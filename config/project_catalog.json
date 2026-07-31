@@ -1,0 +1,1570 @@
+{
+    "catalog_version":  "museum-project-catalog-v1-pending-zones",
+    "projects":  [
+                     {
+                         "project_id":  "smart_medicine_dispenser",
+                         "official_name":  "AI IoT Dual Compartment Medicine Dispenser",
+                         "short_name":  "Smart Medicine Box",
+                         "zone":  {
+                                      "number":  "",
+                                      "name":  "Healthcare Innovation"
+                                  },
+                         "purpose":  "Demonstrates automated healthcare adherence using localized IoT networks, electronic scheduling, and real-time kinetic impact confirmation.",
+                         "what_it_does":  "Allows users to schedule prescriptions via a web dashboard and automatically dispenses precise tablet quantities sequentially from distinct chutes.",
+                         "how_it_works":  {
+                                              "inputs":  [
+                                                             "Real time clock synchronization data",
+                                                             "Web dashboard schedule configuration inputs",
+                                                             "Piezoelectric sensor impact vibration signals",
+                                                             "Web interface motor speed constraints"
+                                                         ],
+                                              "processing":  "The ESP32 tracks real-time scheduling milestones against dashboard entries, activating precise motor speeds sequentially and monitoring analog vibration spikes to verify successful physical tablet drop confirmation.",
+                                              "outputs":  [
+                                                              "Local web dashboard telemetry views",
+                                                              "Audible buzzer alarm threshold alerts",
+                                                              "Motorized compartmental rotational mechanical outputs",
+                                                              "Real time digital history logs"
+                                                          ]
+                                          },
+                         "visitor_interaction":  {
+                                                     "how_visitor_starts":  "The visitor accesses the local IP address on a web browser to view the unified configuration dashboard interface.",
+                                                     "visitor_actions":  [
+                                                                             "Connects smartphone to the local device network hotspot",
+                                                                             "Enters desired delivery hours and minutes via dashboard",
+                                                                             "Modifies target tablet counts for separate compartments",
+                                                                             "Adjusts motor drive speed and sensor sensitivity parameters",
+                                                                             "Triggers manual testing button for local deployment validation"
+                                                                         ],
+                                                     "system_response":  [
+                                                                             "Updates operational scheduling memory variables instantaneously",
+                                                                             "Fires audible buzzer alarms when milestone schedules match",
+                                                                             "Drives specific compartment gear motors to release pills",
+                                                                             "Processes analog vibration spikes during dropping phases",
+                                                                             "Appends precise delivery success timestamps to history tables"
+                                                                         ],
+                                                     "completion":  "The visitor receives their tablet and reviews the validated completion log update on the web app."
+                                                 },
+                         "visible_features":  [
+                                                  "Dual separate medicine storage compartments",
+                                                  "ESP32 microcontroller circuit core board",
+                                                  "L298N dual channel motor driver",
+                                                  "Two high torque gear motors",
+                                                  "Central piezoelectric vibration sensing element",
+                                                  "Audible alert buzzer module indicator",
+                                                  "External twelve volt power interface"
+                                              ],
+                         "aliases":  [
+                                         "AI Medicine Box",
+                                         "Smart Pill Dispenser",
+                                         "IoT Medication Scheduler",
+                                         "Dual Slot Medicine Box"
+                                     ],
+                         "visitor_phrases":  [
+                                                 "Where do I set the medicine timing schedule?",
+                                                 "How does it check if the pill actually fell?",
+                                                 "Can I control both compartments on this page?",
+                                                 "Change the motor speed for the first chamber.",
+                                                 "Did the system register the successful dispense event?",
+                                                 "Where is the historical log table shown?",
+                                                 "Is it time to take my scheduled tablets?",
+                                                 "Adjust the sensitivity for the vibration sensor."
+                                             ],
+                         "keywords":  [
+                                          "ESP32 microcontroller",
+                                          "L298N motor driver",
+                                          "Piezoelectric vibration sensor",
+                                          "Real time clock",
+                                          "IoT medicine schedule",
+                                          "Web dashboard configuration",
+                                          "Sequential tablet delivery",
+                                          "Automated pill dispenser",
+                                          "Analog threshold calibration",
+                                          "Local web server",
+                                          "Dual compartment storage",
+                                          "Healthcare automation system"
+                                      ],
+                         "confusable_with":  [
+                                                 {
+                                                     "reason":  "Both are healthcare AI exhibits; this project schedules and physically dispenses tablets, while HealthAI Pro analyses uploaded blood-test reports.",
+                                                     "project_id":  "healthai_pro"
+                                                 }
+                                             ]
+                     },
+                     {
+                         "project_id":  "lemon_battery_midi_synth",
+                         "official_name":  "Fruit Battery Bio Sonification Interactive MIDI Synthesizer",
+                         "short_name":  "Lemon Battery Music Exhibit",
+                         "zone":  {
+                                      "number":  "",
+                                      "name":  "Interactive AI and Bio-Tech Exhibition Hall"
+                                  },
+                         "purpose":  "Demonstrates biological energy production, human capacitance interaction, and intelligent algorithmic music mapping through real-time analog micro-voltage sensing.",
+                         "what_it_does":  "Allows museum visitors to create digital music notes and responsive synthesizer sounds simply by touching a real living lemon battery.",
+                         "how_it_works":  {
+                                              "inputs":  [
+                                                             "Copper rod voltage changes",
+                                                             "Zinc nail ground reference",
+                                                             "Human touch electrical capacitance"
+                                                         ],
+                                              "processing":  "An ESP32 filters high-frequency analog signal noise before a Python script maps voltage spikes into standard digital MIDI instrument triggers.",
+                                              "outputs":  [
+                                                              "Real-time computer audio playback",
+                                                              "Live terminal data graph",
+                                                              "Digital musical instrument signals"
+                                                          ]
+                                          },
+                         "visitor_interaction":  {
+                                                     "how_visitor_starts":  "The visitor approaches the installation and views the live resting voltage data on the screen.",
+                                                     "visitor_actions":  [
+                                                                             "Look at the lemon on the breadboard setup.",
+                                                                             "Touch the metal copper rod or fruit skin surface.",
+                                                                             "Lift hand off the fruit to silence the sound.",
+                                                                             "Tap rapidly to create fast rhythmic musical beats."
+                                                                         ],
+                                                     "system_response":  [
+                                                                             "Establishes a rock-solid flat resting stage value.",
+                                                                             "Detects the electrical change from touch baseline transition.",
+                                                                             "Sends instant MIDI note messages to computer software.",
+                                                                             "Stops playing music notes upon hand release detection."
+                                                                         ],
+                                                     "completion":  "The interaction ends when the visitor releases the fruit and values return to the flat resting stage."
+                                                 },
+                         "visible_features":  [
+                                                  "Fresh yellow lemon fruit",
+                                                  "ESP32 microchip on breadboard",
+                                                  "Bright copper rod electrode",
+                                                  "Galvanized zinc nail electrode",
+                                                  "Colorful jumper wire connections",
+                                                  "Small static filtering resistor",
+                                                  "Laptop showing live data"
+                                              ],
+                         "aliases":  [
+                                         "Lemon Piano",
+                                         "Fruit Battery Synth",
+                                         "Bio Music Generator",
+                                         "Lemon MIDI Controller"
+                                     ],
+                         "visitor_phrases":  [
+                                                 "How does a lemon make a music sound?",
+                                                 "Look, the screen shows my touch changing the graph!",
+                                                 "Where do I touch to play a note?",
+                                                 "Is this real electricity coming from the fruit?",
+                                                 "I am making music just by holding a lemon."
+                                             ],
+                         "keywords":  [
+                                          "lemon battery",
+                                          "midi music software",
+                                          "esp32 microcontroller",
+                                          "python audio script",
+                                          "analog voltage reading",
+                                          "resting stage baseline",
+                                          "touch state threshold",
+                                          "pulldown resistor filtering",
+                                          "bio sonification installation",
+                                          "interactive sound exhibit"
+                                      ],
+                         "confusable_with":  [
+
+                                             ]
+                     },
+                     {
+                         "project_id":  "ai_object_detection_voice_assistant",
+                         "oAicial_name":  "AI Real-Time Object Detection",
+                         "short_name":  "AI Detector",
+                         "zone":  {
+                                      "number":  "leave these.",
+                                      "name":  "leave these."
+                                  },
+                         "purpose":  "Demonstrates real-time object detection with AI and provides spoken feedback using computer vision and voice technology.",
+                         "what_it_does":  "Detects objects from a live camera feed, displays bounding boxes, and announces detected objects through voice.",
+                         "how_it_works":  {
+                                              "inputs":  [
+                                                             "IP camera video",
+                                                             "Live images",
+                                                             "YOLO model",
+                                                             "GPU or CPU",
+                                                             "Camera frames"
+                                                         ],
+                                              "processing":  "Captures live video, processes each frame using YOLOv8, identifies objects with confidence scores, and generates voice announcements and visual labels.",
+                                              "outputs":  [
+                                                              "Detected objects",
+                                                              "Bounding boxes",
+                                                              "Confidence scores",
+                                                              "Voice alerts",
+                                                              "Live video",
+                                                              "FPS display"
+                                                          ]
+                                          },
+                         "visitor_interaction":  {
+                                                     "how_visitor_starts":  "Stand in front of the camera with any object.",
+                                                     "visitor_actions":  [
+                                                                             "Show an object",
+                                                                             "Move object slowly",
+                                                                             "Observe screen",
+                                                                             "Listen to voice",
+                                                                             "Try diAerent objects"
+                                                                         ],
+                                                     "system_response":  [
+                                                                             "Captures live video",
+                                                                             "Detects visible objects",
+                                                                             "Draws bounding boxes",
+                                                                             "Displays confidence",
+                                                                             "Speaks object names",
+                                                                             "Updates continuously"
+                                                                         ],
+                                                     "completion":  "Interaction ends when the camera is closed or the visitor leaves."
+                                                 },
+                         "visible_features":  [
+                                                  "Live camera",
+                                                  "Bounding boxes",
+                                                  "Object labels",
+                                                  "Confidence values",
+                                                  "Voice output",
+                                                  "FPS counter",
+                                                  "Detection window"
+                                              ],
+                         "aliases":  [
+                                         "YOLO Detector",
+                                         "Smart Vision",
+                                         "AI Vision",
+                                         "Object Identifier",
+                                         "Vision Assistant",
+                                         "Live Detection",
+                                         "AI Camera",
+                                         "Voice Detector"
+                                     ],
+                         "visitor_phrases":  [
+                                                 "It detects objects instantly.",
+                                                 "It tells object names.",
+                                                 "The camera recognizes items.",
+                                                 "It speaks detected objects.",
+                                                 "The AI identifies everything.",
+                                                 "It shows confidence scores.",
+                                                 "The detection is real time.",
+                                                 "It recognizes everyday objects."
+                                             ],
+                         "keywords":  [
+                                          "YOLOv8",
+                                          "Computer Vision",
+                                          "Object Detection",
+                                          "Artificial Intelligence",
+                                          "OpenCV",
+                                          "PyTorch",
+                                          "IP Camera",
+                                          "Live Video",
+                                          "Bounding Box",
+                                          "Voice Output",
+                                          "Real Time",
+                                          "Deep Learning",
+                                          "GPU",
+                                          "Confidence Score",
+                                          "Image Recognition"
+                                      ],
+                         "confusable_with":  [
+                                                 {
+                                                     "reason":  "Both use YOLO and voice output from a camera feed; this project names visible objects, while Vision Assist provides obstacle distance and direction guidance.",
+                                                     "project_id":  "vision_assist"
+                                                 },
+                                                 {
+                                                     "reason":  "Both use live camera-based detection; this project identifies general objects with spoken labels, while Smart Crowd Counter tracks people and occupancy.",
+                                                     "project_id":  "smart_crowd_counter"
+                                                 }
+                                             ]
+                     },
+                     {
+                         "project_id":  "ai_time_portal",
+                         "official_name":  "AI Time Portal: Conversational Historical Time Travel",
+                         "short_name":  "AI Time Portal",
+                         "zone":  {
+                                      "number":  "leave these.",
+                                      "name":  "leave these."
+                                  },
+                         "purpose":  "Demonstrates how generative AI can reconstruct historical context and let people converse naturally with figures from any chosen year in history.",
+                         "what_it_does":  "Lets visitors enter any year and explore a historical snapshot with real figures, events, and a scene image, then chat by voice or text.",
+                         "how_it_works":  {
+                                              "inputs":  [
+                                                             "Typed year input",
+                                                             "Voice input via microphone",
+                                                             "Text chat messages",
+                                                             "Carousel year selection"
+                                                         ],
+                                              "processing":  "Groq\u0027s AI model generates accurate historical data (events, figures, context) for the chosen year, then powers in-character conversations grounded in that year\u0027s real people and events.",
+                                              "outputs":  [
+                                                              "Historical summary text",
+                                                              "Timeline of key events",
+                                                              "List of historical figures",
+                                                              "Spoken AI voice replies",
+                                                              "Text chat responses",
+                                                              "Pre-generated scene image"
+                                                          ]
+                                          },
+                         "visitor_interaction":  {
+                                                     "how_visitor_starts":  "Visitor enters a year, or taps a suggested year card, to open a portal into that historical moment.",
+                                                     "visitor_actions":  [
+                                                                             "Type or select a year",
+                                                                             "Tap a historical figure",
+                                                                             "Type or speak a question",
+                                                                             "Listen to spoken reply",
+                                                                             "Browse timeline milestones",
+                                                                             "Return to pick new year"
+                                                                         ],
+                                                     "system_response":  [
+                                                                             "Generates historical summary and key events",
+                                                                             "Opens chat panel with chosen figure",
+                                                                             "Replies in character using real history",
+                                                                             "Speaks the reply aloud automatically",
+                                                                             "Shows suggested follow-up questions"
+                                                                         ],
+                                                     "completion":  "Visitor closes the chat panel or selects a new year, ending that historical session."
+                                                 },
+                         "visible_features":  [
+                                                  "Glowing portal orb animation",
+                                                  "Year search input field",
+                                                  "Recommended year card carousel",
+                                                  "Historical figure avatar list",
+                                                  "Chat panel with voice",
+                                                  "Timeline milestone nodes",
+                                                  "Sci-fi dark UI theme",
+                                                  "Historical scene image"
+                                              ],
+                         "aliases":  [
+                                         "Time Portal",
+                                         "History Chat AI",
+                                         "Chronos AI",
+                                         "Time Travel Chat"
+                                     ],
+                         "visitor_phrases":  [
+                                                 "Can I talk to a historical figure?",
+                                                 "Show me what happened in this year",
+                                                 "Let me chat with someone from the past",
+                                                 "Take me back in time",
+                                                 "What happened in 1969?",
+                                                 "Can I hear them speak?",
+                                                 "Show me ancient Egypt",
+                                                 "Who lived during this era?"
+                                             ],
+                         "keywords":  [
+                                          "time travel",
+                                          "AI chat",
+                                          "historical figures",
+                                          "voice chat",
+                                          "Edge TTS",
+                                          "speech recognition",
+                                          "Groq API",
+                                          "historical timeline",
+                                          "generative AI",
+                                          "chatbot",
+                                          "roleplay AI",
+                                          "year search",
+                                          "portal UI",
+                                          "sci-fi interface",
+                                          "pre-generated images"
+                                      ],
+                         "confusable_with":  [
+                                                 {
+                                                     "reason":  "Both support spoken AI conversations; the Time Portal is a screen-based historical conversation experience, while the Welcome Robot guides visitors in the museum.",
+                                                     "project_id":  "museum_welcome_robot"
+                                                 }
+                                             ]
+                     },
+                     {
+                         "project_id":  "smart_crowd_counter",
+                         "official_name":  "AI Smart Crowd Counter and Person Tracking",
+                         "short_name":  "Crowd Counter",
+                         "zone":  {
+                                      "number":  "leave these.",
+                                      "name":  "leave these."
+                                  },
+                         "purpose":  "Demonstrates real-time AI person detection and tracking to count and log crowd occupancy using a live camera feed.",
+                         "what_it_does":  "Detects people from a live camera, assigns unique IDs, tracks entry/exit times, and displays stats on a dashboard.",
+                         "how_it_works":  {
+                                              "inputs":  [
+                                                             "Live IP camera video stream",
+                                                             "IP camera URL entered by user"
+                                                         ],
+                                              "processing":  "YOLOv8 detects people, ByteTrack assigns persistent IDs, tracks movement, logs entry/exit times to SQLite database.",
+                                              "outputs":  [
+                                                              "Live video feed with bounding boxes",
+                                                              "Person ID labels on each person",
+                                                              "Entry and exit time records",
+                                                              "Dashboard with crowd statistics",
+                                                              "CSV export of attendance data"
+                                                          ]
+                                          },
+                         "visitor_interaction":  {
+                                                     "how_visitor_starts":  "Visitor opens the website URL in a browser and enters the IP camera URL.",
+                                                     "visitor_actions":  [
+                                                                             "Enter the IP camera URL into the input box",
+                                                                             "Click Connect to start the live stream",
+                                                                             "View detected people on the live feed",
+                                                                             "Search for a person by ID",
+                                                                             "Export attendance data as CSV",
+                                                                             "Toggle dark mode"
+                                                                         ],
+                                                     "system_response":  [
+                                                                             "Displays live video with bounding boxes and IDs",
+                                                                             "Shows real-time person count and FPS",
+                                                                             "Updates people table every second",
+                                                                             "Shows entry time, exit time, and duration",
+                                                                             "Highlights new entries and exits"
+                                                                         ],
+                                                     "completion":  "Visitor can stop by closing the browser tab or disconnecting the camera."
+                                                 },
+                         "visible_features":  [
+                                                  "Live camera feed with bounding boxes",
+                                                  "Person IDs above each detected person",
+                                                  "Dashboard with four stat cards",
+                                                  "People details table with timestamps",
+                                                  "Dark mode toggle button",
+                                                  "Loading animation on startup",
+                                                  "Search box for person lookup",
+                                                  "CSV export button"
+                                              ],
+                         "aliases":  [
+                                         "AI Crowd Counter",
+                                         "Person Tracking Dashboard",
+                                         "Smart Occupancy Counter",
+                                         "People Detection System"
+                                     ],
+                         "visitor_phrases":  [
+                                                 "How many people are in the room right now?",
+                                                 "Show me who entered today.",
+                                                 "Can I search for Person-003?",
+                                                 "Export the attendance list as CSV.",
+                                                 "Turn on dark mode.",
+                                                 "Connect to my phone camera.",
+                                                 "What time did each person leave?",
+                                                 "Reset all the data for today."
+                                             ],
+                         "keywords":  [
+                                          "YOLOv8 person detection",
+                                          "ByteTrack object tracking",
+                                          "IP camera stream",
+                                          "real-time crowd counting",
+                                          "person unique ID",
+                                          "entry exit logging",
+                                          "Flask web application",
+                                          "SQLite database",
+                                          "Bootstrap dashboard",
+                                          "OpenCV computer vision",
+                                          "dark mode UI",
+                                          "CSV attendance export",
+                                          "live video feed",
+                                          "people occupancy tracking",
+                                          "AI surveillance system"
+                                      ],
+                         "confusable_with":  [
+                                                 {
+                                                     "reason":  "Both analyse a live camera feed with detection boxes; this project counts and tracks people, while the Object Detection Assistant identifies general objects and speaks their names.",
+                                                     "project_id":  "ai_object_detection_voice_assistant"
+                                                 },
+                                                 {
+                                                     "reason":  "Both use camera-based person/object detection; this project measures occupancy and entry/exit records, while Vision Assist gives accessibility navigation guidance.",
+                                                     "project_id":  "vision_assist"
+                                                 }
+                                             ]
+                     },
+                     {
+                         "project_id":  "prompt_to_painting_ai_art_booth",
+                         "official_name":  "Prompt to Painting: AI Art Booth",
+                         "short_name":  "AI Art Booth",
+                         "zone":  {
+                                      "number":  "leave these.",
+                                      "name":  "leave these."
+                                  },
+                         "purpose":  "Demonstrates how Generative AI transforms text prompts into digital artwork through an interactive, educational museum experience.",
+                         "what_it_does":  "Converts visitor text prompts into AI-generated paintings and provides a QR code to download the artwork.",
+                         "how_it_works":  {
+                                              "inputs":  [
+                                                             "Text prompt",
+                                                             "Generate button",
+                                                             "Example prompt",
+                                                             "Internet connection"
+                                                         ],
+                                              "processing":  "Enhances the prompt, sends it to the SDXL-Turbo AI model, generates artwork, adds watermark, and creates a downloadable QR code.",
+                                              "outputs":  [
+                                                              "AI artwork",
+                                                              "QR code",
+                                                              "Status message",
+                                                              "Digital painting"
+                                                          ]
+                                          },
+                         "visitor_interaction":  {
+                                                     "how_visitor_starts":  "Approaches the booth and enters or selects a text prompt.",
+                                                     "visitor_actions":  [
+                                                                             "View the booth display",
+                                                                             "Type an idea",
+                                                                             "Or choose example prompt",
+                                                                             "Click Generate Art",
+                                                                             "Wait for generation",
+                                                                             "Scan QR code"
+                                                                         ],
+                                                     "system_response":  [
+                                                                             "Accepts visitor prompt",
+                                                                             "Processes prompt with AI",
+                                                                             "Displays generation status",
+                                                                             "Shows generated artwork",
+                                                                             "Creates QR code",
+                                                                             "Provides downloadable image"
+                                                                         ],
+                                                     "completion":  "The artwork appears with a QR code for download, completing the experience."
+                                                 },
+                         "visible_features":  [
+                                                  "Large display screen",
+                                                  "Prompt input box",
+                                                  "Generate button",
+                                                  "Example prompts",
+                                                  "Generated artwork",
+                                                  "QR code",
+                                                  "Status indicator",
+                                                  "AI explanation"
+                                              ],
+                         "aliases":  [
+                                         "Prompt to Painting",
+                                         "AI Art Booth",
+                                         "AI Painting Booth",
+                                         "Text to Art",
+                                         "Text to Image",
+                                         "Generative AI Booth",
+                                         "AI Art Generator",
+                                         "Painting Booth"
+                                     ],
+                         "visitor_phrases":  [
+                                                 "Can AI draw this?",
+                                                 "Let me try.",
+                                                 "Generate my painting.",
+                                                 "Wow, that\u0027s amazing!",
+                                                 "Can I download it?",
+                                                 "This is my artwork.",
+                                                 "AI made this?",
+                                                 "Let\u0027s scan the QR."
+                                             ],
+                         "keywords":  [
+                                          "Generative AI",
+                                          "Text to Image",
+                                          "SDXL Turbo",
+                                          "HuggingFace",
+                                          "Python",
+                                          "Gradio",
+                                          "Prompt Engineering",
+                                          "Digital Art",
+                                          "QR Code",
+                                          "Image Generation",
+                                          "Museum Exhibit",
+                                          "Interactive Booth",
+                                          "Cloud AI",
+                                          "Pillow",
+                                          "AI Creativity"
+                                      ],
+                         "confusable_with":  [
+
+                                             ]
+                     },
+                     {
+                         "project_id":  "agriculture_domain_expert_llm",
+                         "official_name":  "Fine-Tuned Agriculture Domain Expert LLM",
+                         "short_name":  "Agriculture Expert LLM",
+                         "zone":  {
+                                      "number":  "leave these.",
+                                      "name":  "leave these."
+                                  },
+                         "purpose":  "Demonstrate how fine-tuning transforms a general language model into an AI system specialized in agriculture-related knowledge and question answering.",
+                         "what_it_does":  "Answers agriculture-related questions using knowledge learned from a specialized agriculture question-answering dataset.",
+                         "how_it_works":  {
+                                              "inputs":  [
+                                                             "Agriculture-related questions",
+                                                             "Text-based user prompts",
+                                                             "Crop-related queries",
+                                                             "Farming-related questions"
+                                                         ],
+                                              "processing":  "The fine-tuned Gemma 4 E2B language model processes agriculture-related questions and generates relevant domain-specific answers learned from the KisanVaani agriculture question-answering dataset.",
+                                              "outputs":  [
+                                                              "Agriculture answers",
+                                                              "Crop-related information",
+                                                              "Farming knowledge",
+                                                              "Text-based responses"
+                                                          ]
+                                          },
+                         "visitor_interaction":  {
+                                                     "how_visitor_starts":  "The visitor enters an agriculture-related question into the text-based AI interface.",
+                                                     "visitor_actions":  [
+                                                                             "Enter an agriculture-related question",
+                                                                             "Submit the question to the model",
+                                                                             "Wait for the AI response",
+                                                                             "Read the generated answer",
+                                                                             "Ask another agriculture question"
+                                                                         ],
+                                                     "system_response":  [
+                                                                             "Receives the visitor\u0027s question",
+                                                                             "Processes the agriculture-related input",
+                                                                             "Uses fine-tuned domain knowledge",
+                                                                             "Generates a relevant answer",
+                                                                             "Displays the response to visitor"
+                                                                         ],
+                                                     "completion":  "The interaction is complete when the model displays a relevant answer to the visitor\u0027s agriculture question."
+                                                 },
+                         "visible_features":  [
+                                                  "Text-based AI interface",
+                                                  "Agriculture question input",
+                                                  "Generated AI responses",
+                                                  "Fine-tuned Gemma model",
+                                                  "Agriculture knowledge",
+                                                  "Question-answering system",
+                                                  "Domain-specific AI",
+                                                  "Computer-based demonstration"
+                                              ],
+                         "aliases":  [
+                                         "Agriculture AI",
+                                         "Farming AI",
+                                         "Agri Expert",
+                                         "Agri LLM",
+                                         "Agriculture Chatbot",
+                                         "Farm Knowledge AI"
+                                     ],
+                         "visitor_phrases":  [
+                                                 "Ask the agriculture AI a question",
+                                                 "This model specializes in agriculture",
+                                                 "The AI answers farming questions",
+                                                 "This model was fine-tuned for agriculture",
+                                                 "This is a domain expert language model",
+                                                 "The model provides agriculture knowledge",
+                                                 "It answers crop-related questions",
+                                                 "This AI understands farming topics"
+                                             ],
+                         "keywords":  [
+                                          "Artificial intelligence",
+                                          "Large language model",
+                                          "Fine-tuning",
+                                          "Gemma 4 E2B",
+                                          "Agriculture",
+                                          "Farming",
+                                          "Crop knowledge",
+                                          "Question answering",
+                                          "Domain expert",
+                                          "Natural language",
+                                          "Machine learning",
+                                          "PEFT",
+                                          "LoRA",
+                                          "QLoRA",
+                                          "KisanVaani dataset"
+                                      ],
+                         "confusable_with":  [
+                                                 {
+                                                     "reason":  "Both provide specialised AI guidance in a domain; this project answers agriculture questions from a fine-tuned language model, while HealthAI Pro analyses blood-test reports.",
+                                                     "project_id":  "healthai_pro"
+                                                 }
+                                             ]
+                     },
+                     {
+                         "project_id":  "healthai_pro",
+                         "official_name":  "HealthAI Pro: AI-Powered Health Intelligence",
+                         "short_name":  "HealthAI Pro",
+                         "zone":  {
+                                      "number":  "leave these.",
+                                      "name":  "leave these."
+                                  },
+                         "purpose":  "Demonstrates how on-device AI can turn raw blood test reports into actionable health insights without sending private medical data to any server.",
+                         "what_it_does":  "Analyzes uploaded blood test reports and generates AI-powered disease risk predictions, diet plans, and personalized health recommendations, all processed locally.",
+                         "how_it_works":  {
+                                              "inputs":  [
+                                                             "Uploaded blood test report",
+                                                             "Biomarker values",
+                                                             "PDF or image file"
+                                                         ],
+                                              "processing":  "The system parses biomarker values from the uploaded report and runs them through local AI models to assess health risks, flag abnormal markers, and generate tailored recommendations, all on-device.",
+                                              "outputs":  [
+                                                              "Health analysis summary",
+                                                              "Disease risk predictions",
+                                                              "Personalized diet plan",
+                                                              "Health recommendations"
+                                                          ]
+                                          },
+                         "visitor_interaction":  {
+                                                     "how_visitor_starts":  "Visitor uploads or selects a blood test report on the website to begin analysis.",
+                                                     "visitor_actions":  [
+                                                                             "Upload a blood test report file",
+                                                                             "Wait for local AI analysis to run",
+                                                                             "Review predictions and recommendations",
+                                                                             "Browse suggested diet plan"
+                                                                         ],
+                                                     "system_response":  [
+                                                                             "Parses report and extracts biomarkers",
+                                                                             "Displays disease risk predictions",
+                                                                             "Shows personalized diet and health tips"
+                                                                         ],
+                                                     "completion":  "Visitor sees the full analysis report with predictions and recommendations displayed on screen."
+                                                 },
+                         "visible_features":  [
+                                                  "Report upload interface",
+                                                  "Health dashboard",
+                                                  "Biomarker analysis charts",
+                                                  "Diet plan display"
+                                              ],
+                         "aliases":  [
+                                         "HealthAI",
+                                         "Health Pro AI",
+                                         "Blood test analyzer"
+                                     ],
+                         "visitor_phrases":  [
+                                                 "The blood test analysis project",
+                                                 "The AI that reads my blood report",
+                                                 "The health prediction website",
+                                                 "The private health AI app"
+                                             ],
+                         "keywords":  [
+                                          "blood test",
+                                          "AI analysis",
+                                          "disease prediction",
+                                          "diet plan",
+                                          "biomarkers",
+                                          "health intelligence",
+                                          "on-device AI",
+                                          "personalized recommendations"
+                                      ],
+                         "confusable_with":  [
+                                                 {
+                                                     "reason":  "Both are healthcare-focused; HealthAI Pro analyses uploaded blood reports and recommendations, while the Smart Medicine Dispenser schedules and releases tablets.",
+                                                     "project_id":  "smart_medicine_dispenser"
+                                                 },
+                                                 {
+                                                     "reason":  "Both are domain-specific AI systems that produce guidance; HealthAI Pro uses biomarkers from a report, while the Agriculture Expert LLM answers farming questions.",
+                                                     "project_id":  "agriculture_domain_expert_llm"
+                                                 }
+                                             ]
+                     },
+                     {
+                         "project_id":  "ai_campus_3d_hub",
+                         "official_name":  "Department-Wise AI Implementation 3D Interactive Hub",
+                         "short_name":  "AI Campus 3D Hub",
+                         "zone":  {
+                                      "number":  "leave these.",
+                                      "name":  "leave these."
+                                  },
+                         "purpose":  "Demonstrates how artificial intelligence transforms various engineering departments through an interactive, visual 3D interface.",
+                         "what_it_does":  "Allows visitors to explore AI use cases across different academic departments by interacting with orbiting 3D icons.",
+                         "how_it_works":  {
+                                              "inputs":  [
+                                                             "Mouse clicks on 3D badges",
+                                                             "Click and drag UI panels",
+                                                             "Mouse dragging to rotate scene"
+                                                         ],
+                                              "processing":  "The system calculates gyroscopic 3D orbits, triggers smooth camera transitions, and renders dynamic procedural materials in real-time.",
+                                              "outputs":  [
+                                                              "Cinematic camera zoom transitions",
+                                                              "3D anti-gravity floating animations",
+                                                              "Detailed glassmorphic information panels",
+                                                              "Procedural AI plasma visuals"
+                                                          ]
+                                          },
+                         "visitor_interaction":  {
+                                                     "how_visitor_starts":  "The visitor views the 3D scene as department badges fly in and orbit the central core.",
+                                                     "visitor_actions":  [
+                                                                             "Observes the orbiting department badges.",
+                                                                             "Clicks on a specific department badge.",
+                                                                             "Reads the detailed AI implementation popup.",
+                                                                             "Drags the popup to reposition it.",
+                                                                             "Clicks the close button to exit."
+                                                                         ],
+                                                     "system_response":  [
+                                                                             "Camera zooms into the central core.",
+                                                                             "Clicked badge floats to the center.",
+                                                                             "A glassmorphic information modal appears.",
+                                                                             "Background orbit rotation pauses."
+                                                                         ],
+                                                     "completion":  "The visitor closes the popup modal, returning the camera and badge to their default orbiting states."
+                                                 },
+                         "visible_features":  [
+                                                  "Central pulsing 3D plasma core",
+                                                  "Orbiting departmental icon badges",
+                                                  "Glowing gyroscopic orbital tracks",
+                                                  "Transparent glassmorphic UI panels",
+                                                  "Interactive drop-down accordion menus"
+                                              ],
+                         "aliases":  [
+                                         "AI Department Web",
+                                         "3D Campus AI Tracker",
+                                         "Neural Network Campus Hub",
+                                         "AI Implementation Explorer"
+                                     ],
+                         "visitor_phrases":  [
+                                                 "How does AI work in Mechanical Engineering?",
+                                                 "Look at the floating plasma ball.",
+                                                 "Click that spinning computer icon.",
+                                                 "The glass menu moves when dragged."
+                                             ],
+                         "keywords":  [
+                                          "React Three Fiber",
+                                          "AI implementation",
+                                          "Glassmorphism UI",
+                                          "3D animation",
+                                          "Engineering departments",
+                                          "Interactive visualization",
+                                          "Cinematic UI"
+                                      ],
+                         "confusable_with":  [
+                                                 {
+                                                     "reason":  "Both let visitors explore AI information through an interactive interface; this project explains AI use cases by engineering department in 3D, while India AI Startups profiles companies and sectors.",
+                                                     "project_id":  "india_ai_startups_directory"
+                                                 }
+                                             ]
+                     },
+                     {
+                         "project_id":  "skillnova_ai_recruitment_system",
+                         "official_name":  "SkillNova AI Recruitment System",
+                         "short_name":  "SkillNova",
+                         "zone":  {
+                                      "number":  "",
+                                      "name":  ""
+                                  },
+                         "purpose":  "Demonstrates an AI-based recruitment platform that evaluates candidates through skill and job-specific assessments.",
+                         "what_it_does":  "Evaluates candidate skills, conducts job assessments, recommends suitable jobs, and provides performance feedback.",
+                         "how_it_works":  {
+                                              "inputs":  [
+                                                             "Candidate ID",
+                                                             "Password",
+                                                             "Skill selection",
+                                                             "Job selection",
+                                                             "Text answers"
+                                                         ],
+                                              "processing":  "The system verifies the candidate, displays skill and job-specific questions, evaluates responses, calculates scores, and recommends suitable jobs based on performance.",
+                                              "outputs":  [
+                                                              "Skill questions",
+                                                              "Job questions",
+                                                              "Assessment scores",
+                                                              "Selection result",
+                                                              "Improvement feedback",
+                                                              "Job recommendation"
+                                                          ]
+                                          },
+                         "visitor_interaction":  {
+                                                     "how_visitor_starts":  "The visitor logs in using Candidate ID and password.",
+                                                     "visitor_actions":  [
+                                                                             "Login to system",
+                                                                             "Enter candidate details",
+                                                                             "Complete skill tests",
+                                                                             "Choose job role",
+                                                                             "Answer job questions",
+                                                                             "View final result"
+                                                                         ],
+                                                     "system_response":  [
+                                                                             "Displays skill assessment",
+                                                                             "Starts countdown timer",
+                                                                             "Shows job questions",
+                                                                             "Evaluates answers",
+                                                                             "Calculates scores",
+                                                                             "Displays final result"
+                                                                         ],
+                                                     "completion":  "The visitor views the final assessment result and recommended job outcome."
+                                                 },
+                         "visible_features":  [
+                                                  "Login page",
+                                                  "Skill assessment",
+                                                  "Job assessment",
+                                                  "Countdown timer",
+                                                  "Question display",
+                                                  "Result dashboard",
+                                                  "Job recommendations",
+                                                  "Feedback messages"
+                                              ],
+                         "aliases":  [
+                                         "SkillNova",
+                                         "AI Recruiter",
+                                         "AI Hiring",
+                                         "Smart Recruitment",
+                                         "Recruitment System",
+                                         "Interview Platform"
+                                     ],
+                         "visitor_phrases":  [
+                                                 "Start my interview",
+                                                 "Select my job role",
+                                                 "Begin skill assessment",
+                                                 "Show my result",
+                                                 "View recommended jobs",
+                                                 "Check my score",
+                                                 "Why was I rejected?",
+                                                 "Am I selected?"
+                                             ],
+                         "keywords":  [
+                                          "Artificial Intelligence",
+                                          "Flask",
+                                          "Python",
+                                          "CSV",
+                                          "Skill Assessment",
+                                          "Job Assessment",
+                                          "Recruitment",
+                                          "Interview",
+                                          "Candidate",
+                                          "Scoring",
+                                          "Feedback",
+                                          "Recommendation",
+                                          "Timer",
+                                          "Anti Cheating",
+                                          "Job Matching"
+                                      ],
+                         "confusable_with":  [
+
+                                             ]
+                     },
+                     {
+                         "project_id":  "vision_assist",
+                         "official_name":  "Vision Assist — Real-time Obstacle Detection with Voice Guidance",
+                         "short_name":  "Vision Assist",
+                         "zone":  {
+                                      "number":  "leave these.",
+                                      "name":  "leave these."
+                                  },
+                         "purpose":  "Helps visually impaired users navigate by detecting obstacles in real-time via camera and speaking directional guidance.",
+                         "what_it_does":  "Uses a webcam to detect objects via YOLOv8, estimates distance and direction, and speaks guidance aloud via Windows SAPI.",
+                         "how_it_works":  {
+                                              "inputs":  [
+                                                             "Live webcam or phone camera feed",
+                                                             "YOLOv8 object detection model weights",
+                                                             "Optional SAPI voice commands",
+                                                             "Optional phone remote touch page"
+                                                         ],
+                                              "processing":  "Runs YOLOv8 tracking on every frame, estimates distance via pinhole formula from known object widths, determines left/center/right zone, and queues speech via Windows SAPI on a background thread with cooldowns.",
+                                              "outputs":  [
+                                                              "Spoken directional guidance via speakers",
+                                                              "On-screen video with bounding boxes",
+                                                              "Optional traffic light color announcements",
+                                                              "Optional OCR text reading from signs",
+                                                              "Optional fall detection alerts",
+                                                              "Optional memory query responses"
+                                                          ]
+                                          },
+                         "visitor_interaction":  {
+                                                     "how_visitor_starts":  "Run the script with a webcam connected. It speaks \u0027Vision assist starting\u0027 and immediately begins announcing obstacles.",
+                                                     "visitor_actions":  [
+                                                                             "Walk while carrying a device with a camera",
+                                                                             "Optionally speak commands like \u0027find cell phone\u0027",
+                                                                             "Optionally use phone web page to query memory",
+                                                                             "Press \u0027q\u0027 in the video window to quit"
+                                                                         ],
+                                                     "system_response":  [
+                                                                             "Announces obstacle type, direction, and distance",
+                                                                             "Gives urgent warnings for fast-approaching hazards",
+                                                                             "Says \u0027person very close, move right\u0027 when nearby",
+                                                                             "Responds to memory queries with last-seen info"
+                                                                         ],
+                                                     "completion":  "The session ends when the user presses \u0027q\u0027 or closes the video window."
+                                                 },
+                         "visible_features":  [
+                                                  "Laptop webcam or phone as wireless camera",
+                                                  "On-screen video with colored bounding boxes",
+                                                  "Vertical lines dividing left, center, right zones",
+                                                  "Object class labels with estimated distance",
+                                                  "Optional phone remote web page interface"
+                                              ],
+                         "aliases":  [
+                                         "Vision Assist",
+                                         "blind assistant",
+                                         "obstacle detection system",
+                                         "voice navigation aid",
+                                         "YOLO vision guide",
+                                         "object awareness assistant"
+                                     ],
+                         "visitor_phrases":  [
+                                                 "It tells me what\u0027s in front of me.",
+                                                 "It said a person was on my left about 6 feet.",
+                                                 "I can ask it where I left my cell phone.",
+                                                 "It warns me when something is approaching fast.",
+                                                 "It says \u0027chair ahead, move left or right\u0027.",
+                                                 "The camera sees everything and speaks it out loud."
+                                             ],
+                         "keywords":  [
+                                          "YOLOv8 object detection",
+                                          "real-time tracking",
+                                          "obstacle avoidance",
+                                          "voice guidance",
+                                          "Windows SAPI speech",
+                                          "distance estimation",
+                                          "monocular depth",
+                                          "visual impairment aid",
+                                          "collision warning",
+                                          "object memory",
+                                          "traffic light detection",
+                                          "stair detection",
+                                          "fall detection",
+                                          "OCR text reading",
+                                          "Kalman filter trajectory"
+                                      ],
+                         "confusable_with":  [
+                                                 {
+                                                     "reason":  "Both use live camera object detection and voice; Vision Assist estimates distance and direction for accessibility, while the Object Detection Assistant labels visible objects.",
+                                                     "project_id":  "ai_object_detection_voice_assistant"
+                                                 },
+                                                 {
+                                                     "reason":  "Both detect people in video; Vision Assist warns an individual about obstacles, while Smart Crowd Counter logs people, entries, exits, and occupancy.",
+                                                     "project_id":  "smart_crowd_counter"
+                                                 }
+                                             ]
+                     },
+                     {
+                         "project_id":  "india_ai_startups_directory",
+                         "official_name":  "India AI Startups — Discover India\u0027s AI Future",
+                         "short_name":  "India AI Startups",
+                         "zone":  {
+                                      "number":  "1",
+                                      "name":  "Startup Zone"
+                                  },
+                         "purpose":  "Showcase research-backed profiles of India\u0027s leading AI startups across 10 sectors, making the ecosystem discoverable and comparable.",
+                         "what_it_does":  "Lets visitors browse, filter, and explore 38 Indian AI startups with funding data, founder stories, achievements, and growth timelines.",
+                         "how_it_works":  {
+                                              "inputs":  [
+                                                             "Sector filter chip selection",
+                                                             "Search text query",
+                                                             "Read More button click"
+                                                         ],
+                                              "processing":  "JavaScript filters the 38-company dataset by sector or search keyword, renders matching cards, and on demand builds a detailed modal with description, achievements, story, and a growth sparkline chart.",
+                                              "outputs":  [
+                                                              "Filtered company card grid",
+                                                              "Sector badge chips",
+                                                              "Founder avatar and name",
+                                                              "Funding and valuation label",
+                                                              "Interactive growth timeline chart",
+                                                              "Key achievements and founder story"
+                                                          ]
+                                          },
+                         "visitor_interaction":  {
+                                                     "how_visitor_starts":  "Visitor lands on the hero page and sees a grid of AI startup cards with sector filter chips.",
+                                                     "visitor_actions":  [
+                                                                             "Click a sector chip to filter startups by industry.",
+                                                                             "Type a company or founder name in the search bar.",
+                                                                             "Scroll through the filtered card grid.",
+                                                                             "Click Read More on any card to open detail modal.",
+                                                                             "Read description, achievements, and founder story.",
+                                                                             "Close modal by pressing X or clicking outside."
+                                                                         ],
+                                                     "system_response":  [
+                                                                             "Card grid instantly filters to matching sector cards.",
+                                                                             "Search narrows cards to keyword matches in real time.",
+                                                                             "Modal opens wide with company header and sector chips.",
+                                                                             "Left column shows description, funding, and location.",
+                                                                             "Right column shows trophy-listed achievements and story.",
+                                                                             "Growth timeline sparkline renders below the two columns."
+                                                                         ],
+                                                     "completion":  "Visitor closes the modal and returns to the card grid to explore more startups."
+                                                 },
+                         "visible_features":  [
+                                                  "Hero title and search bar",
+                                                  "Horizontal sector filter chips",
+                                                  "Company logo or initials badge",
+                                                  "Funding and valuation label",
+                                                  "Read More button on each card",
+                                                  "Wide two-column detail modal",
+                                                  "Growth timeline sparkline chart",
+                                                  "Trophy-icon achievements list"
+                                              ],
+                         "aliases":  [
+                                         "AI startup directory India",
+                                         "Indian AI companies list",
+                                         "India startup explorer",
+                                         "AI founders directory"
+                                     ],
+                         "visitor_phrases":  [
+                                                 "Show me Indian AI startups in healthcare.",
+                                                 "Which Indian AI company raised the most funding?",
+                                                 "Who founded Krutrim and what does it do?",
+                                                 "What are the top generative AI startups from India?",
+                                                 "I want to see the growth timeline for Sarvam AI.",
+                                                 "Which startups are in the fintech AI sector?",
+                                                 "Tell me the founder story for this company.",
+                                                 "How many Indian AI startups are listed here?"
+                                             ],
+                         "keywords":  [
+                                          "India AI startups",
+                                          "startup directory",
+                                          "sector filter chips",
+                                          "company card grid",
+                                          "growth timeline chart",
+                                          "founder story blockquote",
+                                          "key achievements list",
+                                          "funding valuation label",
+                                          "Read More modal",
+                                          "Generative AI sector",
+                                          "Healthcare AI sector",
+                                          "search and filter",
+                                          "38 companies",
+                                          "10 AI sectors",
+                                          "sparkline visualization"
+                                      ],
+                         "confusable_with":  [
+                                                 {
+                                                     "reason":  "Both are interactive AI-information explorers; this project compares Indian startups and sectors, while the AI Campus 3D Hub explores AI implementations across engineering departments.",
+                                                     "project_id":  "ai_campus_3d_hub"
+                                                 }
+                                             ]
+                     },
+                     {
+                         "project_id":  "gesture_tic_tac_toe",
+                         "official_name":  "AI Gesture-Controlled Tic-Tac-Toe",
+                         "short_name":  "Gesture Tic-Tac-Toe",
+                         "zone":  {
+                                      "number":  "leave these.",
+                                      "name":  "leave these."
+                                  },
+                         "purpose":  "Demonstrates real-time computer vision and AI by allowing users to play Tic-Tac-Toe using physical hand gestures.",
+                         "what_it_does":  "Allows visitors to play Tic-Tac-Toe without touching a screen or mouse, using only hand gestures captured by a webcam.",
+                         "how_it_works":  {
+                                              "inputs":  [
+                                                             "Webcam video feed",
+                                                             "Hand gestures",
+                                                             "Index finger movement",
+                                                             "Pinch gesture"
+                                                         ],
+                                              "processing":  "MediaPipe detects hand landmarks in real-time. A classifier identifies gestures to move a cursor and make selections. A Minimax AI calculates the opponent\u0027s optimal move.",
+                                              "outputs":  [
+                                                              "Game board state visuals",
+                                                              "AI opponent moves",
+                                                              "Live gesture feed overlay",
+                                                              "Score tracking",
+                                                              "Game outcome announcements"
+                                                          ]
+                                          },
+                         "visitor_interaction":  {
+                                                     "how_visitor_starts":  "The visitor stands before the webcam and shows an open palm gesture to start the game.",
+                                                     "visitor_actions":  [
+                                                                             "Shows open palm to start game",
+                                                                             "Moves index finger to control cursor",
+                                                                             "Pinches fingers to select a cell",
+                                                                             "Shows victory sign to restart game",
+                                                                             "Closes fist to pause the game",
+                                                                             "Shows five fingers to exit"
+                                                                         ],
+                                                     "system_response":  [
+                                                                             "Initializes the game board",
+                                                                             "Moves the on-screen selection cursor",
+                                                                             "Places the player\u0027s mark on board",
+                                                                             "AI computes and plays its turn",
+                                                                             "Updates the score tracker",
+                                                                             "Overlays real-time hand skeleton tracking"
+                                                                         ],
+                                                     "completion":  "The game announces a win, loss, or draw. The visitor can show a victory gesture to restart."
+                                                 },
+                         "visible_features":  [
+                                                  "Screen displaying Tic-Tac-Toe",
+                                                  "Live webcam feed",
+                                                  "Hand tracking skeleton overlay",
+                                                  "Gesture status icons"
+                                              ],
+                         "aliases":  [
+                                         "AI Tic-Tac-Toe",
+                                         "Hand Gesture Tic-Tac-Toe",
+                                         "Vision Tic-Tac-Toe",
+                                         "Camera Tic-Tac-Toe"
+                                     ],
+                         "visitor_phrases":  [
+                                                 "It\u0027s reading my hand movements.",
+                                                 "How do I select a square?",
+                                                 "The unbeatable mode is really hard.",
+                                                 "I just pinch to place my X.",
+                                                 "This feels like magic."
+                                             ],
+                         "keywords":  [
+                                          "Tic-Tac-Toe",
+                                          "Computer Vision",
+                                          "Hand Tracking",
+                                          "MediaPipe",
+                                          "Minimax AI",
+                                          "Gestures",
+                                          "Webcam",
+                                          "Game",
+                                          "AI Opponent"
+                                      ],
+                         "confusable_with":  [
+                                                 {
+                                                     "reason":  "Both are webcam hand-gesture games; this project uses gestures to play against a Tic-Tac-Toe AI, while Pinch \u0026 Puzzle captures a photo and solves a tile puzzle.",
+                                                     "project_id":  "pinch_and_puzzle"
+                                                 },
+                                                 {
+                                                     "reason":  "Both use webcam hand tracking; this project interprets gestures as game controls, while the Sign Language Interpreter recognises ASL letters.",
+                                                     "project_id":  "sign_language_interpreter"
+                                                 }
+                                             ]
+                     },
+                     {
+                         "project_id":  "sign_language_interpreter",
+                         "official_name":  "Sign Language Interpreter",
+                         "short_name":  "Sign Interpreter",
+                         "zone":  {
+                                      "number":  "5",
+                                      "name":  "AI Museum"
+                                  },
+                         "purpose":  "Demonstrates real-time AI-powered American Sign Language recognition entirely in the browser, showing visitors how machine learning can bridge communication gaps.",
+                         "what_it_does":  "Recognizes 10 ASL hand signs from a webcam feed in real time, displays the corresponding letter on screen, and optionally speaks it aloud.",
+                         "how_it_works":  {
+                                              "inputs":  [
+                                                             "Live webcam video feed",
+                                                             "Hand gesture from visitor",
+                                                             "User mode selection",
+                                                             "Browser camera permission"
+                                                         ],
+                                              "processing":  "MediaPipe AI detects the hand and extracts 21 landmark points. A TensorFlow.js neural network classifies the landmark pattern into one of 10 trained ASL letters using an 8-frame smoothing window.",
+                                              "outputs":  [
+                                                              "Recognized letter on screen",
+                                                              "Confidence percentage display",
+                                                              "Spoken letter via text-to-speech",
+                                                              "Sentence building in interpret mode",
+                                                              "Score tracking in learn mode"
+                                                          ]
+                                          },
+                         "visitor_interaction":  {
+                                                     "how_visitor_starts":  "Click the Start Experience button on the welcome screen and allow camera access when the browser prompts.",
+                                                     "visitor_actions":  [
+                                                                             "Allow camera access when browser requests permission",
+                                                                             "Choose between Interpret mode or Learn mode using the toggle",
+                                                                             "Hold up hand and form one of the 10 ASL letter shapes",
+                                                                             "Hold the sign steady for about half a second for recognition",
+                                                                             "In Interpret mode, build a sentence letter by letter",
+                                                                             "In Learn mode, follow prompts to practice each sign"
+                                                                         ],
+                                                     "system_response":  [
+                                                                             "Displays detected hand skeleton overlay on camera feed",
+                                                                             "Shows recognized letter with confidence percentage",
+                                                                             "Commits letter to sentence after 500ms hold",
+                                                                             "Speaks recognized letters or full sentence aloud",
+                                                                             "Provides correct or wrong feedback in Learn mode",
+                                                                             "Cycles through all 10 signs for practice in Learn mode"
+                                                                         ],
+                                                     "completion":  "The interaction has no fixed end. Visitors can stop anytime by closing the tab or switching modes to try a different experience."
+                                                 },
+                         "visible_features":  [
+                                                  "Live camera feed with hand skeleton overlay",
+                                                  "Large letter display card with glow animation",
+                                                  "Confidence meter with color gradient",
+                                                  "Interpret and Learn mode toggle switch",
+                                                  "Welcome screen with project branding",
+                                                  "How It Works five-step pipeline explanation",
+                                                  "English and Tamil language toggle",
+                                                  "Idle attract mode with ASL facts"
+                                              ],
+                         "aliases":  [
+                                         "Hand sign detector",
+                                         "ASL interpreter",
+                                         "Sign language AI",
+                                         "Hand gesture reader",
+                                         "Fingerspelling tool",
+                                         "AI sign recognizer"
+                                     ],
+                         "visitor_phrases":  [
+                                                 "The camera reads my hand signs",
+                                                 "It translates my hand gestures into letters",
+                                                 "I can build sentences by signing letters",
+                                                 "It teaches me how to form ASL signs",
+                                                 "The AI recognizes sign language in real time",
+                                                 "I held up my hand and it showed a letter",
+                                                 "There are ten signs it can recognize",
+                                                 "I can practice signing each letter of the alphabet"
+                                             ],
+                         "keywords":  [
+                                          "American Sign Language",
+                                          "ASL fingerspelling",
+                                          "hand tracking",
+                                          "MediaPipe AI",
+                                          "TensorFlow.js",
+                                          "webcam gesture recognition",
+                                          "real-time classification",
+                                          "neural network",
+                                          "hand landmark detection",
+                                          "in-browser machine learning",
+                                          "sign language letters",
+                                          "camera hand skeleton",
+                                          "letter recognition AI",
+                                          "interactive learning station",
+                                          "gesture to text"
+                                      ],
+                         "confusable_with":  [
+                                                 {
+                                                     "reason":  "Both use webcam hand tracking; this project recognises ASL letters for communication, while Gesture Tic-Tac-Toe interprets hand movements as game controls.",
+                                                     "project_id":  "gesture_tic_tac_toe"
+                                                 },
+                                                 {
+                                                     "reason":  "Both use hand landmarks from a webcam; this project classifies ASL signs, while Pinch \u0026 Puzzle uses a pinch and dwell gestures to control a photo puzzle.",
+                                                     "project_id":  "pinch_and_puzzle"
+                                                 }
+                                             ]
+                     },
+                     {
+                         "project_id":  "feedback_llm_capture",
+                         "official_name":  "Feedback-LLM Voice Feedback Station",
+                         "short_name":  "Voice Feedback Station",
+                         "zone":  {
+                                      "number":  "leave these.",
+                                      "name":  "leave these."
+                                  },
+                         "purpose":  "Collects visitor voice feedback and generates AI-powered feedback reports for museum administrators.",
+                         "what_it_does":  "Records visitor speech, converts it to text, and uses an LLM to create a structured feedback report.",
+                         "how_it_works":  {
+                                              "inputs":  [
+                                                             "Visitor speech",
+                                                             "Microphone audio",
+                                                             "Operator controls"
+                                                         ],
+                                              "processing":  "Captures visitor audio, converts speech to text, sends the transcript to an LLM, and generates a structured feedback report.",
+                                              "outputs":  [
+                                                              "Audio recording",
+                                                              "Speech transcript",
+                                                              "AI feedback report"
+                                                          ]
+                                          },
+                         "visitor_interaction":  {
+                                                     "how_visitor_starts":  "Visitor approaches the microphone and shares their feedback.",
+                                                     "visitor_actions":  [
+                                                                             "Speak into microphone",
+                                                                             "Share exhibit experience",
+                                                                             "Finish speaking"
+                                                                         ],
+                                                     "system_response":  [
+                                                                             "Records voice",
+                                                                             "Transcribes speech",
+                                                                             "Generates AI report"
+                                                                         ],
+                                                     "completion":  "Recording is processed and the feedback report is generated."
+                                                 },
+                         "visible_features":  [
+                                                  "Microphone",
+                                                  "Display screen",
+                                                  "Computer",
+                                                  "Recording interface"
+                                              ],
+                         "aliases":  [
+                                         "Feedback Station",
+                                         "Voice Feedback",
+                                         "Feedback Booth",
+                                         "Audio Feedback"
+                                     ],
+                         "visitor_phrases":  [
+                                                 "I gave my feedback.",
+                                                 "It recorded my voice.",
+                                                 "It understood what I said.",
+                                                 "My feedback was analyzed."
+                                             ],
+                         "keywords":  [
+                                          "Microphone",
+                                          "Speech-to-text",
+                                          "LLM",
+                                          "Voice",
+                                          "Feedback",
+                                          "Transcript",
+                                          "AI analysis",
+                                          "Report"
+                                      ],
+                         "confusable_with":  [
+                                                 {
+                                                     "reason":  "Both record and respond to speech; this project collects visitor feedback at a stationary microphone, while the Welcome Robot conducts museum question-and-answer interactions.",
+                                                     "project_id":  "museum_welcome_robot"
+                                                 }
+                                             ]
+                     },
+                     {
+                         "project_id":  "pinch_and_puzzle",
+                         "official_name":  "Pinch \u0026 Puzzle — Gesture-Powered Photo Puzzle",
+                         "short_name":  "Pinch \u0026 Puzzle",
+                         "zone":  {
+                                      "number":  "leave these.",
+                                      "name":  "leave these."
+                                  },
+                         "purpose":  "Demonstrates real-time hand gesture recognition in the browser using MediaPipe, making AI interaction tangible and playful through a puzzle game.",
+                         "what_it_does":  "Lets visitors use hand gestures to capture a live webcam photo and solve a shuffled 3×3 sliding puzzle with their fingers.",
+                         "how_it_works":  {
+                                              "inputs":  [
+                                                             "Live webcam video feed",
+                                                             "Hand landmark positions",
+                                                             "Pinch gesture (thumb + index)",
+                                                             "Index finger dwell position",
+                                                             "Mouse or touch input",
+                                                             "Visitor name and department"
+                                                         ],
+                                              "processing":  "MediaPipe Hands tracks 21 hand landmarks in real time via WebAssembly. A pinch gesture draws a square crop from the video feed. Dwell detection picks up and swaps 3×3 puzzle tiles. All logic runs client-side with no server.",
+                                              "outputs":  [
+                                                              "Live webcam feed on screen",
+                                                              "Gesture overlay and selection box",
+                                                              "Shuffled 3×3 photo puzzle tiles",
+                                                              "Dwell progress ring cursor",
+                                                              "Elapsed solve timer display",
+                                                              "Leaderboard and confetti celebration"
+                                                          ]
+                                          },
+                         "visitor_interaction":  {
+                                                     "how_visitor_starts":  "Visitor enters their name and department, then clicks Start Camera to enable the webcam.",
+                                                     "visitor_actions":  [
+                                                                             "Enter name and department on the start screen.",
+                                                                             "Click Start Camera and allow webcam access.",
+                                                                             "Pinch thumb and index finger to draw a square selection on the live video.",
+                                                                             "Release pinch to confirm the captured region.",
+                                                                             "Click Make Puzzle to shuffle and start the puzzle.",
+                                                                             "Use finger dwell or mouse drag to rearrange tiles into correct order."
+                                                                         ],
+                                                     "system_response":  [
+                                                                             "Webcam feed appears with hand tracking overlay active.",
+                                                                             "A square selection box follows the pinch gesture in real time.",
+                                                                             "A preview of the captured crop is shown for confirmation.",
+                                                                             "Nine tiles are sliced from the image, shuffled, and displayed.",
+                                                                             "A dwell progress ring appears when finger hovers over a tile.",
+                                                                             "Timer stops and leaderboard appears when puzzle is solved; confetti fires for new record."
+                                                                         ],
+                                                     "completion":  "The visitor knows it is finished when the Solved! overlay appears, the timer stops, and the leaderboard is shown."
+                                                 },
+                         "visible_features":  [
+                                                  "Live webcam video feed",
+                                                  "Hand skeleton overlay canvas",
+                                                  "Pinch selection bounding box",
+                                                  "3×3 shuffled photo tiles",
+                                                  "Dwell ring progress cursor",
+                                                  "Live elapsed timer display",
+                                                  "Leaderboard rankings table",
+                                                  "Confetti celebration animation"
+                                              ],
+                         "aliases":  [
+                                         "Gesture Puzzle Game",
+                                         "Hand Tracking Puzzle",
+                                         "Pinch Puzzle",
+                                         "Photo Tile Puzzle",
+                                         "MediaPipe Puzzle",
+                                         "Webcam Puzzle Game",
+                                         "Pinch and Puzzle",
+                                         "Finger Puzzle"
+                                     ],
+                         "visitor_phrases":  [
+                                                 "How do I grab the tiles with my hand?",
+                                                 "Do I need to pinch my fingers to select?",
+                                                 "Is the camera recording and saving my video?",
+                                                 "How do I start solving the puzzle?",
+                                                 "Can I use the mouse instead of gestures?",
+                                                 "How does it know where my hand is?",
+                                                 "What happens when I finish the puzzle?",
+                                                 "Can I see the leaderboard after solving?"
+                                             ],
+                         "keywords":  [
+                                          "hand gesture",
+                                          "MediaPipe Hands",
+                                          "pinch gesture",
+                                          "webcam capture",
+                                          "photo puzzle",
+                                          "sliding puzzle",
+                                          "tile swap",
+                                          "dwell selection",
+                                          "real-time tracking",
+                                          "browser-based AI",
+                                          "WebAssembly",
+                                          "leaderboard timer",
+                                          "confetti celebration",
+                                          "canvas cropping",
+                                          "client-side ML"
+                                      ],
+                         "confusable_with":  [
+                                                 {
+                                                     "reason":  "Both are webcam hand-gesture games; this project captures a photo and solves a tile puzzle, while Gesture Tic-Tac-Toe uses gestures to play Tic-Tac-Toe.",
+                                                     "project_id":  "gesture_tic_tac_toe"
+                                                 },
+                                                 {
+                                                     "reason":  "Both use webcam hand landmarks; this project uses pinch and dwell gestures for puzzle control, while the Sign Language Interpreter recognises ASL letters.",
+                                                     "project_id":  "sign_language_interpreter"
+                                                 }
+                                             ]
+                     },
+                     {
+                         "project_id":  "museum_welcome_robot",
+                         "official_name":  "AI Museum Welcome Robot",
+                         "short_name":  "welcome Robot",
+                         "zone":  {
+                                      "number":  "leave these.",
+                                      "name":  "leave these."
+                                  },
+                         "purpose":  "Greet museum visitors autonomously, recognize VIPs, and answer questions about AI exhibits via voice interaction.",
+                         "what_it_does":  "Patrols a museum hall autonomously, greets visitors by name, answers exhibit questions through speech, and avoids obstacles.",
+                         "how_it_works":  {
+                                              "inputs":  [
+                                                             "USB camera feed (30fps)",
+                                                             "USB microphone audio stream",
+                                                             "3x ultrasonic distance sensors",
+                                                             "2x wheel encoder ticks",
+                                                             "Wake word detection callback"
+                                                         ],
+                                              "processing":  "Runs concurrent threads for navigation, obstacle avoidance, face recognition, and voice pipeline (STT via faster-whisper, Q\u0026A via Ollama llama3.2, TTS via Coqui XTTS-v2). Position fused from dead-reckoning and ORB visual relocalization.",
+                                              "outputs":  [
+                                                              "DC motor speed commands (differential drive)",
+                                                              "TTS audio through USB speaker",
+                                                              "Servo gestures (head pan, handshake bow)",
+                                                              "Status dashboard on terminal"
+                                                          ]
+                                          },
+                         "visitor_interaction":  {
+                                                     "how_visitor_starts":  "Robot patrols autonomously; visitor walks near it or says the wake phrase \u0027Hey Robot\u0027.",
+                                                     "visitor_actions":  [
+                                                                             "Approach the robot in the museum hall",
+                                                                             "Say \u0027Hey Robot\u0027 to activate voice Q\u0026A",
+                                                                             "Ask a question about exhibits or the museum",
+                                                                             "Wait for the robot\u0027s spoken answer",
+                                                                             "Say \u0027Thank you\u0027 or \u0027Goodbye\u0027 to end conversation"
+                                                                         ],
+                                                     "system_response":  [
+                                                                             "Detects face and recognizes VIPs from database",
+                                                                             "Greets known visitors by name with a handshake gesture",
+                                                                             "Listens via microphone with voice activity detection",
+                                                                             "Transcribes speech and queries Ollama LLM",
+                                                                             "Speaks answer while bobbing head for lip-sync effect",
+                                                                             "Resumes autonomous patrol after interaction ends"
+                                                                         ],
+                                                     "completion":  "Robot returns to patrolling waypoints after answering or silence timeout (30s)."
+                                                 },
+                         "visible_features":  [
+                                                  "USB camera mounted on top",
+                                                  "Moving head (servo pan)",
+                                                  "Handshake arm (servo gesture)",
+                                                  "Ultrasonic sensors (front and sides)",
+                                                  "Two driven front wheels",
+                                                  "Speaker grille",
+                                                  "Microphone hole",
+                                                  "12V battery pack with buck converter"
+                                              ],
+                         "aliases":  [
+                                         "BASHA",
+                                         "ARIA (previous name)",
+                                         "Welcome Robot",
+                                         "AI Museum Bot",
+                                         "Knowledge Institute Robot",
+                                         "Museum Guide Robot",
+                                         "Patrol Robot",
+                                         "Exhibit Answer Bot"
+                                     ],
+                         "visitor_phrases":  [
+                                                 "The robot greeted me by name!",
+                                                 "I asked it about the exhibits and it told me everything.",
+                                                 "It recognized my face and shook my hand.",
+                                                 "Say \u0027Hey Robot\u0027 to wake it up and ask questions.",
+                                                 "The robot is driving around the hall by itself.",
+                                                 "It stopped when someone walked in front of it.",
+                                                 "The robot\u0027s head moves when it talks.",
+                                                 "I asked who made it, and it answered."
+                                             ],
+                         "keywords":  [
+                                          "face recognition",
+                                          "speech to text STT",
+                                          "text to speech TTS",
+                                          "wake word detection",
+                                          "Ollama llama3.2",
+                                          "obstacle avoidance",
+                                          "waypoint navigation",
+                                          "ultrasonic sensor",
+                                          "ESP32 microcontroller",
+                                          "DC gear motors",
+                                          "servo gestures",
+                                          "dead reckoning",
+                                          "ORB visual relocalization",
+                                          "differential drive",
+                                          "VIP face database"
+                                      ],
+                         "confusable_with":  [
+                                                 {
+                                                     "reason":  "Both use speech-to-text and spoken interaction; this project is a mobile museum guide robot, while Feedback-LLM is a stationary visitor-feedback station.",
+                                                     "project_id":  "feedback_llm_capture"
+                                                 },
+                                                 {
+                                                     "reason":  "Both provide spoken AI conversation; this project guides visitors around the museum, while the AI Time Portal enables historical conversations on screen.",
+                                                     "project_id":  "ai_time_portal"
+                                                 }
+                                             ]
+                     }
+                 ]
+}

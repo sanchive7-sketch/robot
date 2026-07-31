@@ -1,0 +1,50 @@
+# Secrets and machine-specific settings
+.env
+.env.*
+!.env.example
+
+# Python environments, bytecode, test, and coverage output
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.nox/
+.ipynb_checkpoints/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+
+# Python build and packaging artifacts
+build/
+dist/
+*.egg-info/
+
+# Downloaded ML models and local runtime state
+*.pt
+*.onnx
+*.engine
+*.tflite
+*.gguf
+runtime/
+
+# Private VIP photos: retain the empty folder placeholder only
+data/vips/*
+!data/vips/.gitkeep
+
+# Editor and operating-system files
+.vscode/
+.idea/
+*.code-workspace
+.DS_Store
+Thumbs.db
+
+# Logs and temporary captures
+*.log
+*.tmp
+captures/

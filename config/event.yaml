@@ -1,0 +1,38 @@
+event:
+  name: "AI Museum 2026"
+  college: "Your College Name"
+  venue: "Main Seminar Hall"
+  date: "Update the event date"
+  opening_hours: "9:00 AM to 5:00 PM"
+  help_desk: "At the main entrance, beside the registration counter"
+  emergency_contact: "Event coordinator: update name and phone number"
+
+catalog_status:
+  zone_assignment: "Pending for most projects"
+  location_answer_policy: "If a project's zone is blank, direct the visitor to the help desk."
+  project_count: 17
+
+current_project_overrides:
+  museum_welcome_robot:
+    reason: "The supplied catalog describes an earlier robot design. These values are current."
+    camera: "Phone camera through DroidCam at 1280x720 and 30 FPS; USB is preferred."
+    visitor_detection: "YOLO26n person detection"
+    vip_recognition: "InsightFace SCRFD and ArcFace with three-frame confirmation"
+    speech_pipeline: "Sarvam Saaras v3 STT, Sarvam-30B LLM, and Bulbul v3 TTS"
+    movement_sensors: "Two ultrasonic sensors and two quadrature wheel encoders"
+    activation: "Welcome and Patrol operate only after the corresponding mobile remote command."
+    interaction_end: "The robot stops and enters stationary Idle after the conversation."
+    not_present:
+      - "No wake-word activation"
+      - "No Ollama or faster-whisper pipeline"
+      - "No autonomous return-to-home through a crowd"
+
+facilities:
+  registration: "At the main entrance"
+  washrooms: "Ground floor, to the left of the seminar hall"
+  refreshments: "Food court behind the main block"
+  first_aid: "Help desk at the main entrance"
+
+policies:
+  - "Visitors must wear their event badge."
+  - "Please do not touch exhibits unless a volunteer gives permission."

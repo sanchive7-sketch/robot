@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#08121e">
+  <title>AI Museum Robot</title>
+  <style>
+    :root { color-scheme: dark; --bg:#08121e; --card:#112338; --text:#eef7ff; --muted:#91a8be; --cyan:#42d8e8; --amber:#ffbd4a; --red:#ff5c6c; }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; font-family:system-ui,-apple-system,Segoe UI,sans-serif; background:radial-gradient(circle at 20% 0,#163450,var(--bg) 48%); color:var(--text); }
+    main { width:min(680px,100%); margin:auto; padding:28px 18px 50px; }
+    .eyebrow { color:var(--cyan); text-transform:uppercase; letter-spacing:.16em; font-weight:750; font-size:.78rem; }
+    h1 { margin:.35rem 0 1.3rem; font-size:clamp(2rem,9vw,4rem); line-height:.94; }
+    .card { background:rgba(17,35,56,.9); border:1px solid #294661; border-radius:22px; padding:20px; margin:14px 0; box-shadow:0 18px 50px #0005; }
+    .mode { display:flex; align-items:center; gap:10px; font-size:1.12rem; font-weight:700; }
+    .dot { width:12px; height:12px; border-radius:50%; background:var(--amber); box-shadow:0 0 16px currentColor; }
+    #activity { color:var(--muted); min-height:2.8em; margin:.55rem 0 0; }
+    .buttons { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    button { appearance:none; border:0; border-radius:18px; min-height:84px; padding:15px; font:750 1.08rem system-ui; cursor:pointer; color:#061017; background:var(--cyan); touch-action:manipulation; }
+    button:active { transform:scale(.98); }
+    .patrol { background:var(--amber); }
+    .stop { grid-column:1/-1; color:white; background:var(--red); font-size:1.25rem; }
+    .facts { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+    .fact { background:#0a1928; border-radius:14px; padding:12px; color:var(--muted); font-size:.82rem; }
+    .fact strong { display:block; color:var(--text); font-size:1rem; margin-top:3px; overflow-wrap:anywhere; }
+    form { display:flex; gap:8px; margin-top:12px; }
+    input { min-width:0; flex:1; border:1px solid #36526c; border-radius:14px; padding:13px; background:#071421; color:white; font:inherit; }
+    form button { min-height:48px; border-radius:14px; font-size:.9rem; }
+    #answer { color:var(--muted); line-height:1.5; }
+    #visionWarning { color:var(--amber); font-size:.82rem; margin:.7rem 0 0; }
+    .error { color:#ff9aa4 !important; }
+    .camera-frame { overflow:hidden; border-radius:15px; background:#071728; aspect-ratio:16/9; margin-top:12px; }
+    .camera-frame img { display:block; width:100%; height:100%; object-fit:cover; }
+  </style>
+</head>
+<body>
+<main>
+  <div class="eyebrow">College event control</div>
+  <h1>AI Museum<br>Robot</h1>
+  <section class="card">
+    <div class="mode"><span class="dot" id="dot"></span><span id="mode">Connecting…</span></div>
+    <p id="activity">Reading robot status.</p>
+    <input id="pin" type="password" inputmode="numeric" placeholder="Control PIN" aria-label="Control PIN" maxlength="32">
+  </section>
+  <section class="buttons" aria-label="Robot modes">
+    <button onclick="setMode('welcome')">👋 Welcome</button>
+    <button class="patrol" onclick="setMode('patrol')">↻ Patrol</button>
+    <button class="stop" onclick="setMode('stop')">■ STOP</button>
+  </section>
+  <section class="card">
+    <div class="facts">
+      <div class="fact">ESP32<strong id="esp">—</strong></div>
+      <div class="fact">Camera<strong id="camera">—</strong></div>
+      <div class="fact">Answer model<strong id="llm">—</strong></div>
+      <div class="fact">Visitor<strong id="visitor">—</strong></div>
+      <div class="fact">Front clearance<strong id="clearance">—</strong></div>
+    </div>
+    <p id="visionWarning"></p>
+  </section>
+  <section class="card">
+    <div class="eyebrow">Live DroidCam feed</div>
+    <div class="camera-frame">
+      <img id="cameraFeed" src="/api/camera/stream" alt="Live DroidCam camera feed">
+    </div>
+    <p class="small">The laptop captures DroidCam once and shares the feed with this dashboard.</p>
+  </section>
+  <section class="card">
+    <div class="eyebrow">Text question / testing</div>
+    <form id="ask"><input id="question" placeholder="Where is project A1?" maxlength="500"><button>Ask</button></form>
+    <p id="answer"></p>
+  </section>
+</main>
+<script>
+  const $ = id => document.getElementById(id);
+  async function setMode(mode) {
+    try {
+      const pin=$('pin').value.trim();
+      if (!pin) throw new Error('Enter the Control PIN before selecting a mode.');
+      localStorage.setItem('robotPin',pin);
+      const r = await fetch('/api/mode', {method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({mode,pin})});
+      if (!r.ok) throw new Error((await r.json()).detail || 'Command failed');
+      render(await r.json());
+    } catch (e) { $('activity').textContent=e.message; $('activity').className='error'; }
+  }
+  function render(s) {
+    $('mode').textContent=s.mode.toUpperCase();
+    $('activity').textContent=s.activity; $('activity').className='';
+    $('esp').textContent=s.simulation?'Simulation — no ESP32':(s.telemetry.connected?'Connected':'Offline');
+    $('camera').textContent=s.camera_ok?`Ready · ${s.vision_backend}`:'Offline';
+    $('llm').textContent=s.llm.local_ready?`Local · ${s.llm.local_model}`:(s.llm.last_provider==='sarvam'?'Sarvam fallback':'Starting…');
+    $('visitor').textContent=s.vip_name || (s.visitor_detected?'Detected':'None');
+    const c=Math.min(s.telemetry.left_distance_cm,s.telemetry.right_distance_cm);
+    $('clearance').textContent=c>=900?'—':`${Math.round(c)} cm`;
+    $('visionWarning').textContent=[s.vision_error,s.llm.last_error].filter(Boolean).join(' · ');
+    const colors={welcome:'#42d8e8',patrol:'#ffbd4a',stopped:'#ff5c6c',emergency:'#ff5c6c',idle:'#91a8be'};
+    $('dot').style.background=colors[s.mode]||'#91a8be';
+  }
+  async function poll(){ try{ const r=await fetch('/api/status'); if(r.ok) render(await r.json()); }catch(e){} }
+  setInterval(poll,750); poll();
+  $('pin').value=localStorage.getItem('robotPin')||'';
+  $('ask').addEventListener('submit',async e=>{
+    e.preventDefault(); const q=$('question').value.trim(); if(!q)return;
+    $('answer').textContent='Thinking…';
+    try{const r=await fetch('/api/question',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({question:q,pin:$('pin').value})});const j=await r.json();if(!r.ok)throw new Error(j.detail);$('answer').textContent=j.answer;}
+    catch(e){$('answer').textContent=e.message;$('answer').className='error';}
+  });
+</script>
+</body>
+</html>

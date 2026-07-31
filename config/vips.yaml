@@ -1,0 +1,7 @@
+vips:
+  - id: "principal"
+    name: "Dr. Guest Name"
+    title: "Principal"
+    greeting: "A very warm welcome, Dr. Guest Name. We are honoured to have you at our AI Museum."
+    photos:
+      - "principal.jpg"
