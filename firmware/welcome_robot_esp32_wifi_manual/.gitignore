@@ -1,0 +1,2 @@
+# This holds the real Wi-Fi password and shared robot-control token.
+wifi_secrets.h
