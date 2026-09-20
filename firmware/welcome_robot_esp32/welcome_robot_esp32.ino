@@ -30,9 +30,29 @@ constexpr uint8_t US_LEFT_TRIG = 16;
 constexpr uint8_t US_LEFT_ECHO = 17;
 constexpr uint8_t US_RIGHT_TRIG = 18;
 constexpr uint8_t US_RIGHT_ECHO = 19;
-constexpr uint8_t LEFT_ARM_SERVO = 13;
-constexpr uint8_t RIGHT_ARM_SERVO = 14;
+constexpr uint8_t SHOULDER_SERVO_PIN = 13;  // Servo 1.
+constexpr uint8_t FOREARM_SERVO_PIN = 14;   // Servo 2.
 constexpr uint8_t ESTOP_PIN = 21;  // Normally-closed switch to GND.
+
+// ----- Installed hardware profile -----
+// Current build: motors, ultrasonic sensors and one articulated arm. Change a
+// flag to true only after that component is wired and tested. Welcome motion
+// requires both encoders and ultrasonic sensors to enforce the fixed safe area.
+constexpr bool HAS_ENCODERS = false;
+constexpr bool HAS_ULTRASONIC_SENSORS = true;
+constexpr bool HAS_ARM_SERVOS = true;
+constexpr bool HAS_PHYSICAL_ESTOP = false;
+
+// ----- Welcome arm gesture -----
+constexpr int SHOULDER_REST_ANGLE = 0;
+constexpr int SHOULDER_RAISED_ANGLE = 90;
+constexpr int FOREARM_CENTER_ANGLE = 90;
+constexpr int FOREARM_LEFT_ANGLE = 45;
+constexpr int FOREARM_RIGHT_ANGLE = 135;
+constexpr uint8_t FOREARM_WAVE_COUNT = 3;
+// One degree every 20 ms gives a slow, smooth movement without blocking the
+// serial heartbeat, motor safety checks or ultrasonic polling.
+constexpr uint32_t SERVO_STEP_INTERVAL_MS = 20;
 
 // ----- Chassis calibration: MEASURE these values -----
 constexpr float WHEEL_DIAMETER_M = 0.100f;
@@ -49,10 +69,13 @@ constexpr float OBSTACLE_STOP_CM = 42.0f;
 constexpr float PATROL_LEG_M = 2.0f;
 constexpr float AVOID_OFFSET_M = 0.45f;
 constexpr float AVOID_FORWARD_M = 0.75f;
+constexpr float WELCOME_ZONE_MARGIN_M = 0.06f;
+constexpr float WELCOME_COMMAND_HORIZON_S = 0.50f;
+constexpr uint32_t MANUAL_COMMAND_TIMEOUT_MS = 500;
 constexpr uint32_t LINK_TIMEOUT_MS = 1200;
 constexpr uint32_t TELEMETRY_PERIOD_MS = 200;
 
-enum class Mode { STOPPED, WELCOME, PATROL, EMERGENCY };
+enum class Mode { STOPPED, WELCOME, MANUAL, EMERGENCY };
 enum class PatrolState {
   DRIVE_LEG,
   TURN_CORNER,
@@ -64,6 +87,14 @@ enum class PatrolState {
   AVOID_OFFSET_IN,
   AVOID_TURN_RESUME
 };
+enum class WelcomeGestureState {
+  IDLE,
+  RAISING_SHOULDER,
+  WAVING_LEFT,
+  WAVING_RIGHT,
+  CENTERING_FOREARM,
+  LOWERING_SHOULDER
+};
 
 volatile int32_t leftTicks = 0;
 volatile int32_t rightTicks = 0;
@@ -72,8 +103,9 @@ int32_t previousRightTicks = 0;
 
 Mode mode = Mode::STOPPED;
 PatrolState patrolState = PatrolState::DRIVE_LEG;
-Servo leftArm;
-Servo rightArm;
+WelcomeGestureState welcomeGestureState = WelcomeGestureState::IDLE;
+Servo shoulderServo;
+Servo forearmServo;
 
 float poseX = 0.0f;
 float poseY = 0.0f;
@@ -86,12 +118,20 @@ float targetHeading = 0.0f;
 float patrolHeading = 0.0f;
 float patrolLegTargetM = PATROL_LEG_M;
 float avoidanceRemainingM = PATROL_LEG_M;
+float welcomeOriginX = 0.0f;
+float welcomeOriginY = 0.0f;
+float welcomeOriginHeading = 0.0f;
+float welcomeForwardLimitM = 1.20f;
+float welcomeSideLimitM = 0.60f;
 float commandedLinear = 0.0f;
 float commandedAngular = 0.0f;
 uint32_t lastLinkMs = 0;
+uint32_t lastManualDriveMs = 0;
 uint32_t lastTelemetryMs = 0;
-uint32_t waveUntilMs = 0;
-bool wavePhase = false;
+uint32_t lastServoStepMs = 0;
+int shoulderAngle = SHOULDER_REST_ANGLE;
+int forearmAngle = FOREARM_CENTER_ANGLE;
+uint8_t completedForearmWaves = 0;
 
 void IRAM_ATTR onLeftEncoder() {
   int direction = digitalRead(LEFT_ENC_A) == digitalRead(LEFT_ENC_B) ? 1 : -1;
@@ -124,6 +164,34 @@ float progressAlongHeading(float heading) {
 void beginDistanceState() {
   stateStartX = poseX;
   stateStartY = poseY;
+}
+
+void startWelcome() {
+  // Every Welcome session gets a fresh local coordinate system, so a reset or
+  // odometry drift cannot silently turn an old global pose into a new boundary.
+  welcomeOriginX = poseX;
+  welcomeOriginY = poseY;
+  welcomeOriginHeading = poseHeading;
+  stopMotors();
+}
+
+bool isInsideWelcomeZone(float x, float y, float margin) {
+  const float dx = x - welcomeOriginX;
+  const float dy = y - welcomeOriginY;
+  const float forward = dx * cosf(welcomeOriginHeading) +
+                        dy * sinf(welcomeOriginHeading);
+  const float side = -dx * sinf(welcomeOriginHeading) +
+                     dy * cosf(welcomeOriginHeading);
+  return fabsf(forward) <= welcomeForwardLimitM - margin &&
+         fabsf(side) <= welcomeSideLimitM - margin;
+}
+
+bool welcomeDriveAllowed(float linearMps) {
+  if (linearMps == 0.0f) return true;  // Turning in place stays in the zone.
+  const float horizon = linearMps * WELCOME_COMMAND_HORIZON_S;
+  const float projectedX = poseX + horizon * cosf(poseHeading);
+  const float projectedY = poseY + horizon * sinf(poseHeading);
+  return isInsideWelcomeZone(projectedX, projectedY, WELCOME_ZONE_MARGIN_M);
 }
 
 void setMotor(uint8_t pwmPin, uint8_t in1, uint8_t in2, int pwm, bool reversed) {
@@ -304,18 +372,64 @@ void updatePatrol() {
   }
 }
 
+bool moveServoOneDegree(Servo &servo, int &currentAngle, int targetAngle) {
+  if (currentAngle == targetAngle) return true;
+  currentAngle += currentAngle < targetAngle ? 1 : -1;
+  servo.write(currentAngle);
+  return currentAngle == targetAngle;
+}
+
+void startWelcomeGesture() {
+  // Do not restart a gesture midway because that would make either joint jerk.
+  if (welcomeGestureState != WelcomeGestureState::IDLE) return;
+  forearmAngle = FOREARM_CENTER_ANGLE;
+  forearmServo.write(forearmAngle);
+  completedForearmWaves = 0;
+  lastServoStepMs = millis();
+  welcomeGestureState = WelcomeGestureState::RAISING_SHOULDER;
+}
+
 void updateArms() {
-  if (millis() >= waveUntilMs) {
-    leftArm.write(90);
-    rightArm.write(90);
+  if (welcomeGestureState == WelcomeGestureState::IDLE ||
+      millis() - lastServoStepMs < SERVO_STEP_INTERVAL_MS) {
     return;
   }
-  static uint32_t lastPhaseMs = 0;
-  if (millis() - lastPhaseMs > 260) {
-    lastPhaseMs = millis();
-    wavePhase = !wavePhase;
-    leftArm.write(wavePhase ? 35 : 145);
-    rightArm.write(wavePhase ? 145 : 35);
+  lastServoStepMs = millis();
+
+  switch (welcomeGestureState) {
+    case WelcomeGestureState::RAISING_SHOULDER:
+      if (moveServoOneDegree(
+              shoulderServo, shoulderAngle, SHOULDER_RAISED_ANGLE)) {
+        welcomeGestureState = WelcomeGestureState::WAVING_LEFT;
+      }
+      break;
+    case WelcomeGestureState::WAVING_LEFT:
+      if (moveServoOneDegree(forearmServo, forearmAngle, FOREARM_LEFT_ANGLE)) {
+        welcomeGestureState = WelcomeGestureState::WAVING_RIGHT;
+      }
+      break;
+    case WelcomeGestureState::WAVING_RIGHT:
+      if (moveServoOneDegree(forearmServo, forearmAngle, FOREARM_RIGHT_ANGLE)) {
+        completedForearmWaves++;
+        welcomeGestureState = completedForearmWaves >= FOREARM_WAVE_COUNT
+                                  ? WelcomeGestureState::CENTERING_FOREARM
+                                  : WelcomeGestureState::WAVING_LEFT;
+      }
+      break;
+    case WelcomeGestureState::CENTERING_FOREARM:
+      if (moveServoOneDegree(
+              forearmServo, forearmAngle, FOREARM_CENTER_ANGLE)) {
+        welcomeGestureState = WelcomeGestureState::LOWERING_SHOULDER;
+      }
+      break;
+    case WelcomeGestureState::LOWERING_SHOULDER:
+      if (moveServoOneDegree(
+              shoulderServo, shoulderAngle, SHOULDER_REST_ANGLE)) {
+        welcomeGestureState = WelcomeGestureState::IDLE;
+      }
+      break;
+    case WelcomeGestureState::IDLE:
+      break;
   }
 }
 
@@ -329,7 +443,7 @@ void sendTelemetry() {
   doc["right_cm"] = rightDistanceCm;
   doc["battery_v"] = 0.0;  // Add a calibrated voltage-divider input if required.
   doc["error"] = mode == Mode::EMERGENCY ? "physical emergency stop is open" : "";
-  doc["mode"] = mode == Mode::PATROL ? "PATROL" :
+  doc["mode"] = mode == Mode::MANUAL ? "MANUAL" :
                 mode == Mode::WELCOME ? "WELCOME" :
                 mode == Mode::EMERGENCY ? "EMERGENCY" : "STOPPED";
   serializeJson(doc, Serial);
@@ -348,28 +462,54 @@ void handleCommand(const String &line) {
     stopMotors();
   } else if (command == "HEARTBEAT") {
     // Updating lastLinkMs is the entire heartbeat action.
+  } else if (command == "SET_WELCOME_ZONE") {
+    // The laptop and ESP32 both enforce this. The firmware remains the final
+    // guard if the laptop process stalls or sends a bad command.
+    welcomeForwardLimitM = constrain(
+        doc["forward_limit_m"] | 1.20f, WELCOME_ZONE_MARGIN_M + 0.05f, 3.0f);
+    welcomeSideLimitM = constrain(
+        doc["side_limit_m"] | 0.60f, WELCOME_ZONE_MARGIN_M + 0.05f, 3.0f);
   } else if (command == "SET_MODE") {
     const String requested = doc["mode"] | "";
-    if (requested == "PATROL") {
-      mode = Mode::PATROL;
-      startPatrol();
-    } else if (requested == "WELCOME") {
-      mode = Mode::WELCOME;
+    if (requested == "MANUAL") {
+      mode = Mode::MANUAL;
+      lastManualDriveMs = millis();
       stopMotors();
+    } else if (requested == "WELCOME" && HAS_ENCODERS &&
+               HAS_ULTRASONIC_SENSORS) {
+      mode = Mode::WELCOME;
+      startWelcome();
+    } else if (requested == "WELCOME") {
+      // Greeting and speech still run on the laptop, but motor-only hardware
+      // must not attempt autonomous motion without boundary/obstacle feedback.
+      mode = Mode::STOPPED;
+      stopMotors();
+    }
+  } else if (command == "MANUAL_DRIVE" && mode == Mode::MANUAL) {
+    const float linear = constrain(
+        (float)(doc["linear_mps"] | 0.0f), -0.07f, 0.10f);
+    const float angular = constrain(
+        (float)(doc["angular_rps"] | 0.0f), -0.45f, 0.45f);
+    lastManualDriveMs = millis();
+    if (linear > 0.0f &&
+        min(leftDistanceCm, rightDistanceCm) < OBSTACLE_STOP_CM) {
+      stopMotors();
+    } else {
+      driveRobot(linear, angular);
     }
   } else if (command == "DRIVE" && mode == Mode::WELCOME) {
     const float linear = doc["linear_mps"] | 0.0f;
     const float angular = doc["angular_rps"] | 0.0f;
-    if (linear > 0.0f &&
-        min(leftDistanceCm, rightDistanceCm) < OBSTACLE_STOP_CM) {
+    if ((linear > 0.0f &&
+         min(leftDistanceCm, rightDistanceCm) < OBSTACLE_STOP_CM) ||
+        !welcomeDriveAllowed(linear)) {
       stopMotors();
     } else {
       driveRobot(constrain(linear, -0.20f, 0.20f),
                  constrain(angular, -0.70f, 0.70f));
     }
-  } else if (command == "WAVE") {
-    const float seconds = doc["seconds"] | 2.5f;
-    waveUntilMs = millis() + (uint32_t)(constrain(seconds, 0.2f, 5.0f) * 1000);
+  } else if (command == "WAVE" && HAS_ARM_SERVOS) {
+    startWelcomeGesture();
   }
 }
 
@@ -381,22 +521,29 @@ void setup() {
   pinMode(RIGHT_IN2, OUTPUT);
   pinMode(LEFT_PWM, OUTPUT);
   pinMode(RIGHT_PWM, OUTPUT);
-  pinMode(LEFT_ENC_A, INPUT);
-  pinMode(LEFT_ENC_B, INPUT);
-  pinMode(RIGHT_ENC_A, INPUT);
-  pinMode(RIGHT_ENC_B, INPUT);
-  pinMode(US_LEFT_TRIG, OUTPUT);
-  pinMode(US_LEFT_ECHO, INPUT);
-  pinMode(US_RIGHT_TRIG, OUTPUT);
-  pinMode(US_RIGHT_ECHO, INPUT);
-  pinMode(ESTOP_PIN, INPUT_PULLUP);
-
-  attachInterrupt(digitalPinToInterrupt(LEFT_ENC_A), onLeftEncoder, CHANGE);
-  attachInterrupt(digitalPinToInterrupt(RIGHT_ENC_A), onRightEncoder, CHANGE);
-  leftArm.attach(LEFT_ARM_SERVO, 500, 2500);
-  rightArm.attach(RIGHT_ARM_SERVO, 500, 2500);
-  leftArm.write(90);
-  rightArm.write(90);
+  if (HAS_ENCODERS) {
+    pinMode(LEFT_ENC_A, INPUT);
+    pinMode(LEFT_ENC_B, INPUT);
+    pinMode(RIGHT_ENC_A, INPUT);
+    pinMode(RIGHT_ENC_B, INPUT);
+    attachInterrupt(digitalPinToInterrupt(LEFT_ENC_A), onLeftEncoder, CHANGE);
+    attachInterrupt(digitalPinToInterrupt(RIGHT_ENC_A), onRightEncoder, CHANGE);
+  }
+  if (HAS_ULTRASONIC_SENSORS) {
+    pinMode(US_LEFT_TRIG, OUTPUT);
+    pinMode(US_LEFT_ECHO, INPUT);
+    pinMode(US_RIGHT_TRIG, OUTPUT);
+    pinMode(US_RIGHT_ECHO, INPUT);
+  }
+  if (HAS_PHYSICAL_ESTOP) {
+    pinMode(ESTOP_PIN, INPUT_PULLUP);
+  }
+  if (HAS_ARM_SERVOS) {
+    shoulderServo.attach(SHOULDER_SERVO_PIN, 500, 2500);
+    forearmServo.attach(FOREARM_SERVO_PIN, 500, 2500);
+    shoulderServo.write(SHOULDER_REST_ANGLE);
+    forearmServo.write(FOREARM_CENTER_ANGLE);
+  }
   stopMotors();
   lastLinkMs = millis();
 }
@@ -407,22 +554,36 @@ void loop() {
     handleCommand(line);
   }
 
-  updateOdometry();
-  leftDistanceCm = readUltrasonicCm(US_LEFT_TRIG, US_LEFT_ECHO);
-  rightDistanceCm = readUltrasonicCm(US_RIGHT_TRIG, US_RIGHT_ECHO);
-  updateArms();
+  if (HAS_ENCODERS) {
+    updateOdometry();
+  }
+  if (HAS_ULTRASONIC_SENSORS) {
+    leftDistanceCm = readUltrasonicCm(US_LEFT_TRIG, US_LEFT_ECHO);
+    rightDistanceCm = readUltrasonicCm(US_RIGHT_TRIG, US_RIGHT_ECHO);
+  }
+  if (HAS_ARM_SERVOS) {
+    updateArms();
+  }
 
-  if (digitalRead(ESTOP_PIN) == HIGH) {
+  if (HAS_PHYSICAL_ESTOP && digitalRead(ESTOP_PIN) == HIGH) {
     mode = Mode::EMERGENCY;
     stopMotors();
   } else if (millis() - lastLinkMs > LINK_TIMEOUT_MS) {
     mode = Mode::STOPPED;
     stopMotors();
-  } else if (mode == Mode::PATROL) {
-    updatePatrol();
+  } else if (mode == Mode::MANUAL &&
+             (millis() - lastManualDriveMs > MANUAL_COMMAND_TIMEOUT_MS ||
+              (commandedLinear > 0.0f &&
+               min(leftDistanceCm, rightDistanceCm) < OBSTACLE_STOP_CM))) {
+    // Manual motion has a separate lease. Laptop heartbeats cannot keep an
+    // abandoned movement command alive after the operator releases control.
+    stopMotors();
   } else if (mode == Mode::WELCOME &&
-             commandedLinear > 0.0f &&
-             min(leftDistanceCm, rightDistanceCm) < OBSTACLE_STOP_CM) {
+             ((commandedLinear > 0.0f &&
+               min(leftDistanceCm, rightDistanceCm) < OBSTACLE_STOP_CM) ||
+              !isInsideWelcomeZone(poseX, poseY, 0.0f))) {
+    // This executes continuously, not only when a new DRIVE message arrives.
+    // Encoder overshoot therefore stops at the fixed welcome boundary.
     stopMotors();
   }
 
