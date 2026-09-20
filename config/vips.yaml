@@ -1,7 +1,126 @@
 vips:
-  - id: "principal"
-    name: "Dr. Guest Name"
-    title: "Principal"
-    greeting: "A very warm welcome, Dr. Guest Name. We are honoured to have you at our AI Museum."
+  - id: "dr_m_thangavel"
+    name: "Dr. M. Thangavel"
+    greeting: "Welcome, Dr. M. Thangavel."
     photos:
-      - "principal.jpg"
+      - "01_dr_m_thangavel.webp"
+
+  - id: "dr_c_muniraj"
+    name: "Dr. C. Muniraj"
+    greeting: "Welcome, Dr. C. Muniraj."
+    photos:
+      - "02_dr_c_muniraj.webp"
+
+  - id: "dr_p_prasath"
+    name: "Dr. P. Prasath"
+    greeting: "Welcome, Dr. P. Prasath."
+    photos:
+      - "03_dr_p_prasath.webp"
+
+  - id: "dr_rajendran_periyasamy"
+    name: "Dr. Rajendran Periyasamy"
+    greeting: "Welcome, Dr. Rajendran Periyasamy."
+    photos:
+      - "04_dr_rajendran_periyasamy.jpg"
+
+  - id: "dr_b_sasikumar"
+    name: "Dr. B. Sasikumar"
+    greeting: "Welcome, Dr. B. Sasikumar."
+    photos:
+      - "05_dr_b_sasikumar.webp"
+
+  - id: "dr_p_sachidhanandam"
+    name: "Dr. P. Sachidhanandam"
+    greeting: "Welcome, Dr. P. Sachidhanandam."
+    photos:
+      - "06_dr_p_sachidhanandam.webp"
+
+  - id: "dr_a_gomathi"
+    name: "Dr. A. Gomathi"
+    greeting: "Welcome, Dr. A. Gomathi."
+    photos:
+      - "07_dr_a_gomathi.webp"
+
+  - id: "dr_k_visagavel"
+    name: "Dr. K. Visagavel"
+    greeting: "Welcome, Dr. K. Visagavel."
+    photos:
+      - "08_dr_k_visagavel.jpg"
+
+  - id: "mr_a_gopalakrishnan"
+    name: "Mr. A. Gopalakrishnan"
+    greeting: "Welcome, Mr. A. Gopalakrishnan."
+    photos:
+      - "09_mr_a_gopalakrishnan.webp"
+
+  - id: "dr_p_navaneethakrishnan"
+    name: "Dr. P. Navaneethakrishnan"
+    greeting: "Welcome, Dr. P. Navaneethakrishnan."
+    photos:
+      - "10_dr_p_navaneethakrishnan.webp"
+
+  - id: "mrs_v_brintha"
+    name: "Mrs. V. Brintha"
+    greeting: "Welcome, Mrs. V. Brintha."
+    photos:
+      - "11_mrs_v_brintha.webp"
+
+  - id: "mrs_p_j_esther_rani"
+    name: "Mrs. P. J. Esther Rani"
+    greeting: "Welcome, Mrs. P. J. Esther Rani."
+    photos:
+      - "12_mrs_p_j_esther_rani.webp"
+
+  - id: "mr_s_jayaprakash"
+    name: "Mr. S. Jayaprakash"
+    greeting: "Welcome, Mr. S. Jayaprakash."
+    photos:
+      - "13_mr_s_jayaprakash.webp"
+
+  - id: "mrs_s_sudha"
+    name: "Mrs. S. Sudha"
+    greeting: "Welcome, Mrs. S. Sudha."
+    photos:
+      - "14_mrs_s_sudha.webp"
+
+  - id: "mrs_m_deepa"
+    name: "Mrs. M. Deepa"
+    greeting: "Welcome, Mrs. M. Deepa."
+    photos:
+      - "15_mrs_m_deepa.webp"
+
+  - id: "mr_r_rameshkumar"
+    name: "Mr. R. Rameshkumar"
+    greeting: "Welcome, Mr. R. Rameshkumar."
+    photos:
+      - "16_mr_r_rameshkumar.webp"
+
+  - id: "mr_gunasekar_b"
+    name: "Mr. Gunasekar B"
+    greeting: "Welcome, Mr. Gunasekar B."
+    photos:
+      - "17_mr_gunasekar_b.webp"
+
+  - id: "ms_selvi_m"
+    name: "Ms. Selvi M"
+    greeting: "Welcome, Ms. Selvi M."
+    photos:
+      - "18_ms_selvi_m.webp"
+
+  - id: "ms_ranitha_n_m"
+    name: "Ms. Ranitha N. M"
+    greeting: "Welcome, Ms. Ranitha N. M."
+    photos:
+      - "19_ms_ranitha_n_m.webp"
+
+  - id: "dr_g_sathya_priyanka"
+    name: "Dr. G. Sathya Priyanka"
+    greeting: "Welcome, Dr. G. Sathya Priyanka."
+    photos:
+      - "20_dr_g_sathya_priyanka.webp"
+
+  - id: "mr_sri_sanchive_kumar"
+    name: "Mr. Sri Sanchive Kumar"
+    greeting: "Welcome, Mr. Sri Sanchive Kumar."
+    photos:
+      - "21_mr_sri_sanchive_kumar.jpeg"

@@ -1,11 +1,11 @@
 event:
   name: "AI Museum 2026"
-  college: "Your College Name"
-  venue: "Main Seminar Hall"
-  date: "Update the event date"
+  college: "Knowledge Institute of Technology"
+  venue: "MBA Seminar Hall"
+  date: "8th august 2026"
   opening_hours: "9:00 AM to 5:00 PM"
   help_desk: "At the main entrance, beside the registration counter"
-  emergency_contact: "Event coordinator: update name and phone number"
+  emergency_contact: "Event coordinator: Sri sanchive kumar R +91 8838003882"
 
 catalog_status:
   zone_assignment: "Pending for most projects"
@@ -21,11 +21,11 @@ current_project_overrides:
     speech_pipeline: "Sarvam Saaras v3 STT, Sarvam-30B LLM, and Bulbul v3 TTS"
     movement_sensors: "Two ultrasonic sensors and two quadrature wheel encoders"
     activation: "Welcome and Patrol operate only after the corresponding mobile remote command."
-    interaction_end: "The robot stops and enters stationary Idle after the conversation."
+    interaction_end: "After a visitor says no to further help, the robot returns by odometry to its Welcome starting pose inside the configured welcome zone, then waits for the group to leave before greeting the next visitor."
     not_present:
       - "No wake-word activation"
       - "No Ollama or faster-whisper pipeline"
-      - "No autonomous return-to-home through a crowd"
+      - "No autonomous navigation outside the configured welcome zone"
 
 facilities:
   registration: "At the main entrance"
