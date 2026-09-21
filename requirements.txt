@@ -1,13 +1,14 @@
 fastapi>=0.116,<1
 uvicorn[standard]>=0.35,<1
 pyserial>=3.5,<4
-opencv-contrib-python>=4.12,<5
+opencv-python>=4.12,<5
 # Current OpenCV Contrib wheels for Python 3.11 require NumPy 2. Keep below
 # 2.3 because that is OpenCV's published compatibility ceiling.
 numpy>=2,<2.3
 ultralytics>=8.3,<9
-insightface>=0.7.3,<2
-onnxruntime>=1.22,<2
+--extra-index-url https://download.pytorch.org/whl/cu132
+torch==2.12.1+cu132
+torchvision==0.27.1+cu132
 PyYAML>=6.0,<7
 python-dotenv>=1.1,<2
 httpx>=0.28,<1

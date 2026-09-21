@@ -33,6 +33,24 @@ before allowing it near visitors.
 - A physical emergency-stop input and communication watchdog run on the ESP32.
 - `ROBOT_SIMULATION=true` lets the entire laptop application run without motors.
 
+## Welcome-zone configuration
+
+Selecting **Welcome** records the robot's current encoder pose as the ideal
+position. The laptop and ESP32 both keep autonomous visitor movement inside a
+rectangle centred on that pose. Set its half-length and half-width in `.env`:
+
+```dotenv
+WELCOME_AREA_FORWARD_M=1.20
+WELCOME_AREA_SIDE_M=0.60
+WELCOME_HOME_TOLERANCE_M=0.08
+WELCOME_RETURN_TIMEOUT_SECONDS=20
+```
+
+After each conversation, the robot turns and drives forward to that recorded
+position only when ultrasonic clearance and live ESP32 telemetry are available.
+Otherwise it stops where it is and waits for the operator. It never attempts to
+navigate beyond the welcome zone.
+
 ## System architecture
 
 ```text
