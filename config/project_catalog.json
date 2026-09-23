@@ -6,8 +6,8 @@
                          "official_name":  "AI IoT Dual Compartment Medicine Dispenser",
                          "short_name":  "Smart Medicine Box",
                          "zone":  {
-                                      "number":  "",
-                                      "name":  "Healthcare Innovation"
+                                      "number":  "3",
+                                      "name":  "Flagship Zone"
                                   },
                          "purpose":  "Demonstrates automated healthcare adherence using localized IoT networks, electronic scheduling, and real-time kinetic impact confirmation.",
                          "what_it_does":  "Allows users to schedule prescriptions via a web dashboard and automatically dispenses precise tablet quantities sequentially from distinct chutes.",
@@ -95,8 +95,8 @@
                          "official_name":  "Fruit Battery Bio Sonification Interactive MIDI Synthesizer",
                          "short_name":  "Lemon Battery Music Exhibit",
                          "zone":  {
-                                      "number":  "",
-                                      "name":  "Interactive AI and Bio-Tech Exhibition Hall"
+                                      "number":  "6",
+                                      "name":  "Fun Zone"
                                   },
                          "purpose":  "Demonstrates biological energy production, human capacitance interaction, and intelligent algorithmic music mapping through real-time analog micro-voltage sensing.",
                          "what_it_does":  "Allows museum visitors to create digital music notes and responsive synthesizer sounds simply by touching a real living lemon battery.",
@@ -169,11 +169,11 @@
                      },
                      {
                          "project_id":  "ai_object_detection_voice_assistant",
-                         "oAicial_name":  "AI Real-Time Object Detection",
-                         "short_name":  "AI Detector",
+                         "official_name":  "AI Real-Time Object Detection",
+                         "short_name":  "Object Detection System",
                          "zone":  {
-                                      "number":  "leave these.",
-                                      "name":  "leave these."
+                                      "number":  "5",
+                                      "name":  "Interactive Projects Zone"
                                   },
                          "purpose":  "Demonstrates real-time object detection with AI and provides spoken feedback using computer vision and voice technology.",
                          "what_it_does":  "Detects objects from a live camera feed, displays bounding boxes, and announces detected objects through voice.",
@@ -276,8 +276,8 @@
                          "official_name":  "AI Time Portal: Conversational Historical Time Travel",
                          "short_name":  "AI Time Portal",
                          "zone":  {
-                                      "number":  "leave these.",
-                                      "name":  "leave these."
+                                      "number":  "5",
+                                      "name":  "Interactive Projects Zone"
                                   },
                          "purpose":  "Demonstrates how generative AI can reconstruct historical context and let people converse naturally with figures from any chosen year in history.",
                          "what_it_does":  "Lets visitors enter any year and explore a historical snapshot with real figures, events, and a scene image, then chat by voice or text.",
@@ -372,8 +372,8 @@
                          "official_name":  "AI Smart Crowd Counter and Person Tracking",
                          "short_name":  "Crowd Counter",
                          "zone":  {
-                                      "number":  "leave these.",
-                                      "name":  "leave these."
+                                      "number":  "5",
+                                      "name":  "Interactive Projects Zone"
                                   },
                          "purpose":  "Demonstrates real-time AI person detection and tracking to count and log crowd occupancy using a live camera feed.",
                          "what_it_does":  "Detects people from a live camera, assigns unique IDs, tracks entry/exit times, and displays stats on a dashboard.",
@@ -467,10 +467,10 @@
                      {
                          "project_id":  "prompt_to_painting_ai_art_booth",
                          "official_name":  "Prompt to Painting: AI Art Booth",
-                         "short_name":  "AI Art Booth",
+                         "short_name":  "AI Image Generation Booth",
                          "zone":  {
-                                      "number":  "leave these.",
-                                      "name":  "leave these."
+                                      "number":  "5",
+                                      "name":  "Interactive Projects Zone"
                                   },
                          "purpose":  "Demonstrates how Generative AI transforms text prompts into digital artwork through an interactive, educational museum experience.",
                          "what_it_does":  "Converts visitor text prompts into AI-generated paintings and provides a QR code to download the artwork.",
@@ -565,8 +565,8 @@
                          "official_name":  "Fine-Tuned Agriculture Domain Expert LLM",
                          "short_name":  "Agriculture Expert LLM",
                          "zone":  {
-                                      "number":  "leave these.",
-                                      "name":  "leave these."
+                                      "number":  "3",
+                                      "name":  "Flagship Zone"
                                   },
                          "purpose":  "Demonstrate how fine-tuning transforms a general language model into an AI system specialized in agriculture-related knowledge and question answering.",
                          "what_it_does":  "Answers agriculture-related questions using knowledge learned from a specialized agriculture question-answering dataset.",
@@ -660,8 +660,8 @@
                          "official_name":  "HealthAI Pro: AI-Powered Health Intelligence",
                          "short_name":  "HealthAI Pro",
                          "zone":  {
-                                      "number":  "leave these.",
-                                      "name":  "leave these."
+                                      "number":  "4",
+                                      "name":  "Domain Specific Projects Zone"
                                   },
                          "purpose":  "Demonstrates how on-device AI can turn raw blood test reports into actionable health insights without sending private medical data to any server.",
                          "what_it_does":  "Analyzes uploaded blood test reports and generates AI-powered disease risk predictions, diet plans, and personalized health recommendations, all processed locally.",
@@ -735,10 +735,10 @@
                      {
                          "project_id":  "ai_campus_3d_hub",
                          "official_name":  "Department-Wise AI Implementation 3D Interactive Hub",
-                         "short_name":  "AI Campus 3D Hub",
+                         "short_name":  "Department-Wise AI Implementation",
                          "zone":  {
-                                      "number":  "leave these.",
-                                      "name":  "leave these."
+                                      "number":  "2",
+                                      "name":  "History of AI \u0026 Recent Technologies Zone"
                                   },
                          "purpose":  "Demonstrates how artificial intelligence transforms various engineering departments through an interactive, visual 3D interface.",
                          "what_it_does":  "Allows visitors to explore AI use cases across different academic departments by interacting with orbiting 3D icons.",
@@ -811,10 +811,10 @@
                      {
                          "project_id":  "skillnova_ai_recruitment_system",
                          "official_name":  "SkillNova AI Recruitment System",
-                         "short_name":  "SkillNova",
+                         "short_name":  "AI Recruitment System",
                          "zone":  {
-                                      "number":  "",
-                                      "name":  ""
+                                      "number":  "5",
+                                      "name":  "Interactive Projects Zone"
                                   },
                          "purpose":  "Demonstrates an AI-based recruitment platform that evaluates candidates through skill and job-specific assessments.",
                          "what_it_does":  "Evaluates candidate skills, conducts job assessments, recommends suitable jobs, and provides performance feedback.",
@@ -908,10 +908,10 @@
                      {
                          "project_id":  "vision_assist",
                          "official_name":  "Vision Assist — Real-time Obstacle Detection with Voice Guidance",
-                         "short_name":  "Vision Assist",
+                         "short_name":  "AI Blind Navigation System",
                          "zone":  {
-                                      "number":  "leave these.",
-                                      "name":  "leave these."
+                                      "number":  "4",
+                                      "name":  "Domain Specific Projects Zone"
                                   },
                          "purpose":  "Helps visually impaired users navigate by detecting obstacles in real-time via camera and speaking directional guidance.",
                          "what_it_does":  "Uses a webcam to detect objects via YOLOv8, estimates distance and direction, and speaks guidance aloud via Windows SAPI.",
@@ -1002,9 +1002,9 @@
                      {
                          "project_id":  "india_ai_startups_directory",
                          "official_name":  "India AI Startups — Discover India\u0027s AI Future",
-                         "short_name":  "India AI Startups",
+                         "short_name":  "AI Startups Directory",
                          "zone":  {
-                                      "number":  "1",
+                                      "number":  "7",
                                       "name":  "Startup Zone"
                                   },
                          "purpose":  "Showcase research-backed profiles of India\u0027s leading AI startups across 10 sectors, making the ecosystem discoverable and comparable.",
@@ -1100,8 +1100,8 @@
                          "official_name":  "AI Gesture-Controlled Tic-Tac-Toe",
                          "short_name":  "Gesture Tic-Tac-Toe",
                          "zone":  {
-                                      "number":  "leave these.",
-                                      "name":  "leave these."
+                                      "number":  "6",
+                                      "name":  "Fun Zone"
                                   },
                          "purpose":  "Demonstrates real-time computer vision and AI by allowing users to play Tic-Tac-Toe using physical hand gestures.",
                          "what_it_does":  "Allows visitors to play Tic-Tac-Toe without touching a screen or mouse, using only hand gestures captured by a webcam.",
@@ -1185,10 +1185,10 @@
                      {
                          "project_id":  "sign_language_interpreter",
                          "official_name":  "Sign Language Interpreter",
-                         "short_name":  "Sign Interpreter",
+                         "short_name":  "Sign Language Interpreter",
                          "zone":  {
                                       "number":  "5",
-                                      "name":  "AI Museum"
+                                      "name":  "Interactive Projects Zone"
                                   },
                          "purpose":  "Demonstrates real-time AI-powered American Sign Language recognition entirely in the browser, showing visitors how machine learning can bridge communication gaps.",
                          "what_it_does":  "Recognizes 10 ASL hand signs from a webcam feed in real time, displays the corresponding letter on screen, and optionally speaks it aloud.",
@@ -1285,12 +1285,12 @@
                                              ]
                      },
                      {
-                         "project_id":  "feedback_llm_capture",
-                         "official_name":  "Feedback-LLM Voice Feedback Station",
-                         "short_name":  "Voice Feedback Station",
+                         "project_id":  "event_lens_capture",
+                         "official_name":  "Event Lens Voice Feedback Station",
+                         "short_name":  "Feedback LLM",
                          "zone":  {
-                                      "number":  "leave these.",
-                                      "name":  "leave these."
+                                      "number":  "8",
+                                      "name":  "Feedback Zone"
                                   },
                          "purpose":  "Collects visitor voice feedback and generates AI-powered feedback reports for museum administrators.",
                          "what_it_does":  "Records visitor speech, converts it to text, and uses an LLM to create a structured feedback report.",
@@ -1359,10 +1359,10 @@
                      {
                          "project_id":  "pinch_and_puzzle",
                          "official_name":  "Pinch \u0026 Puzzle — Gesture-Powered Photo Puzzle",
-                         "short_name":  "Pinch \u0026 Puzzle",
+                         "short_name":  "Gesture Photo Puzzle",
                          "zone":  {
-                                      "number":  "leave these.",
-                                      "name":  "leave these."
+                                      "number":  "6",
+                                      "name":  "Fun Zone"
                                   },
                          "purpose":  "Demonstrates real-time hand gesture recognition in the browser using MediaPipe, making AI interaction tangible and playful through a puzzle game.",
                          "what_it_does":  "Lets visitors use hand gestures to capture a live webcam photo and solve a shuffled 3×3 sliding puzzle with their fingers.",
@@ -1466,10 +1466,10 @@
                      {
                          "project_id":  "museum_welcome_robot",
                          "official_name":  "AI Museum Welcome Robot",
-                         "short_name":  "welcome Robot",
+                         "short_name":  "Welcome Robot",
                          "zone":  {
-                                      "number":  "leave these.",
-                                      "name":  "leave these."
+                                      "number":  "1",
+                                      "name":  "Welcome Zone"
                                   },
                          "purpose":  "Greet museum visitors autonomously, recognize VIPs, and answer questions about AI exhibits via voice interaction.",
                          "what_it_does":  "Patrols a museum hall autonomously, greets visitors by name, answers exhibit questions through speech, and avoids obstacles.",
@@ -1557,13 +1557,102 @@
                                       ],
                          "confusable_with":  [
                                                  {
-                                                     "reason":  "Both use speech-to-text and spoken interaction; this project is a mobile museum guide robot, while Feedback-LLM is a stationary visitor-feedback station.",
-                                                     "project_id":  "feedback_llm_capture"
+                                                     "reason":  "Both use speech-to-text and spoken interaction; this project is a mobile museum guide robot, while Event Lens is a stationary visitor-feedback station.",
+                                                     "project_id":  "event_lens_capture"
                                                  },
                                                  {
                                                      "reason":  "Both provide spoken AI conversation; this project guides visitors around the museum, while the AI Time Portal enables historical conversations on screen.",
                                                      "project_id":  "ai_time_portal"
                                                  }
+                                             ]
+                     },
+                     {
+                         "project_id":  "ai_plant_disease_detection",
+                         "official_name":  "AI-Based Plant Disease Detection System",
+                         "short_name":  "Plant Disease Detector",
+                         "zone":  {
+                                      "number":  "4",
+                                      "name":  "Domain Specific Projects Zone"
+                                  },
+                         "purpose":  "Demonstrates AI-powered crop disease identification using Deep Learning to help farmers detect plant diseases early and reduce crop losses.",
+                         "what_it_does":  "Allows users to upload a plant leaf image through a web application and automatically predicts the disease, confidence score, treatment, prevention methods, and recommended products.",
+                         "how_it_works":  {
+                                              "inputs":  [
+                                                             "Plant leaf image uploaded by the user",
+                                                             "Image preprocessing parameters",
+                                                             "Trained EfficientNet-B0 deep learning model",
+                                                             "Disease information database"
+                                                         ],
+                                              "processing":  "The uploaded image is resized to 224×224 pixels, converted into a tensor, and processed using a trained EfficientNet-B0 CNN model built with PyTorch. The model extracts image features, classifies the disease, calculates prediction confidence using Softmax, and retrieves treatment and prevention information from the disease database.",
+                                              "outputs":  [
+                                                              "Predicted plant disease",
+                                                              "Prediction confidence percentage",
+                                                              "Disease description",
+                                                              "Treatment recommendation",
+                                                              "Prevention methods",
+                                                              "Recommended agricultural products"
+                                                          ]
+                                          },
+                         "visitor_interaction":  {
+                                                     "how_visitor_starts":  "The visitor opens the web application in a browser and uploads a plant leaf image.",
+                                                     "visitor_actions":  [
+                                                                             "Upload a leaf image",
+                                                                             "Click the Predict button",
+                                                                             "View disease prediction",
+                                                                             "Read treatment and prevention details",
+                                                                             "Open recommended product links"
+                                                                         ],
+                                                     "system_response":  [
+                                                                             "Receives the uploaded image",
+                                                                             "Processes the image using AI",
+                                                                             "Predicts the disease",
+                                                                             "Displays confidence score",
+                                                                             "Shows treatment, prevention, and product recommendations"
+                                                                         ],
+                                                     "completion":  "The visitor receives the disease diagnosis along with complete treatment and prevention guidance."
+                                                 },
+                         "visible_features":  [
+                                                  "Responsive web dashboard",
+                                                  "Leaf image upload",
+                                                  "AI disease prediction",
+                                                  "Confidence percentage",
+                                                  "Disease description",
+                                                  "Treatment suggestions",
+                                                  "Prevention methods",
+                                                  "Product recommendation links"
+                                              ],
+                         "aliases":  [
+                                         "AI Plant Disease Detector",
+                                         "Smart Crop Disease Detection",
+                                         "Leaf Disease Detection System",
+                                         "Plant Health Analyzer"
+                                     ],
+                         "visitor_phrases":  [
+                                                 "Upload a plant image.",
+                                                 "Which disease is detected?",
+                                                 "What is the confidence level?",
+                                                 "How can I treat this disease?",
+                                                 "How can I prevent this disease?",
+                                                 "Which medicine should I use?",
+                                                 "Can I buy the recommended product?",
+                                                 "Is the plant healthy?"
+                                             ],
+                         "keywords":  [
+                                          "Artificial Intelligence",
+                                          "Deep Learning",
+                                          "PyTorch",
+                                          "EfficientNet-B0",
+                                          "CNN",
+                                          "Flask",
+                                          "PlantVillage Dataset",
+                                          "Image Classification",
+                                          "Agriculture AI",
+                                          "Plant Disease Detection",
+                                          "Crop Health",
+                                          "Computer Vision"
+                                      ],
+                         "confusable_with":  [
+
                                              ]
                      }
                  ]
