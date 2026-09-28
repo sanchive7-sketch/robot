@@ -22,19 +22,28 @@ class Settings:
     project_root: Path = PROJECT_ROOT
     event_file: Path = PROJECT_ROOT / "config" / "event.yaml"
     project_catalog_file: Path = PROJECT_ROOT / "config" / "project_catalog.json"
-    vip_file: Path = PROJECT_ROOT / "config" / "vips.yaml"
+    ai_knowledge_file: Path = PROJECT_ROOT / "config" / "ai_knowledge.json"
     serial_port: str = os.getenv("ROBOT_SERIAL_PORT", "COM5")
     serial_baud: int = int(os.getenv("ROBOT_SERIAL_BAUD", "115200"))
     camera_source: str = os.getenv(
         "CAMERA_SOURCE", os.getenv("CAMERA_INDEX", "0")
     ).strip()
+    camera_backend: str = os.getenv("CAMERA_BACKEND", "dshow").strip().lower()
     camera_width: int = int(os.getenv("CAMERA_WIDTH", "1280"))
     camera_height: int = int(os.getenv("CAMERA_HEIGHT", "720"))
     camera_fps: int = int(os.getenv("CAMERA_FPS", "30"))
     vision_backend: str = os.getenv("VISION_BACKEND", "deep").strip().lower()
-    insightface_model: str = os.getenv("INSIGHTFACE_MODEL", "buffalo_s").strip()
-    vip_similarity_threshold: float = float(
-        os.getenv("VIP_SIMILARITY_THRESHOLD", "0.50")
+    # Half-dimensions of the welcome zone, measured from the pose where Welcome
+    # mode is enabled. The ESP32 enforces this zone independently of the laptop.
+    welcome_area_forward_m: float = float(
+        os.getenv("WELCOME_AREA_FORWARD_M", "1.20")
+    )
+    welcome_area_side_m: float = float(os.getenv("WELCOME_AREA_SIDE_M", "0.60"))
+    welcome_home_tolerance_m: float = float(
+        os.getenv("WELCOME_HOME_TOLERANCE_M", "0.08")
+    )
+    welcome_return_timeout_seconds: float = float(
+        os.getenv("WELCOME_RETURN_TIMEOUT_SECONDS", "20")
     )
     microphone_device: str | None = os.getenv("MICROPHONE_DEVICE") or None
     remote_host: str = os.getenv("REMOTE_HOST", "0.0.0.0")
