@@ -1,11 +1,12 @@
 from __future__ import annotations
 
+import asyncio
 import logging
 import hmac
 import time
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, WebSocket, WebSocketDisconnect
 from fastapi.responses import FileResponse, StreamingResponse
 from pydantic import BaseModel, Field
 
@@ -23,19 +24,22 @@ logging.basicConfig(
     format="%(asctime)s %(levelname)s %(name)s: %(message)s",
 )
 
-event_store = EventStore(settings.event_file, settings.project_catalog_file)
+event_store = EventStore(
+    settings.event_file,
+    settings.project_catalog_file,
+    settings.ai_knowledge_file,
+)
 vision = VisionService(
     camera_source=settings.camera_source,
+    camera_backend=settings.camera_backend,
     camera_width=settings.camera_width,
     camera_height=settings.camera_height,
     camera_fps=settings.camera_fps,
-    vip_file=settings.vip_file,
-    vip_dir=settings.project_root / "data" / "vips",
     backend=settings.vision_backend,
-    insightface_model=settings.insightface_model,
-    vip_similarity_threshold=settings.vip_similarity_threshold,
 )
 controller: RobotController
+_manual_socket: WebSocket | None = None
+_manual_socket_lock = asyncio.Lock()
 
 
 def _telemetry_callback(telemetry) -> None:
@@ -64,7 +68,17 @@ llm = HybridLlm(
     sarvam=speech,
     on_activity=lambda message: controller.set_activity(message),
 )
-controller = RobotController(link, vision, speech, llm, event_store)
+controller = RobotController(
+    link,
+    vision,
+    speech,
+    llm,
+    event_store,
+    welcome_area_forward_m=settings.welcome_area_forward_m,
+    welcome_area_side_m=settings.welcome_area_side_m,
+    welcome_home_tolerance_m=settings.welcome_home_tolerance_m,
+    welcome_return_timeout_seconds=settings.welcome_return_timeout_seconds,
+)
 
 
 @asynccontextmanager
@@ -93,8 +107,12 @@ class PinRequest(BaseModel):
     pin: str = Field(min_length=1, max_length=32)
 
 
+def _pin_matches(pin: str) -> bool:
+    return hmac.compare_digest(pin, settings.remote_control_pin)
+
+
 def _verify_pin(pin: str) -> None:
-    if not hmac.compare_digest(pin, settings.remote_control_pin):
+    if not _pin_matches(pin):
         raise HTTPException(403, "Incorrect control PIN")
 
 
@@ -142,17 +160,63 @@ def set_mode(request: ModeRequest) -> dict:
     _verify_pin(request.pin)
     allowed = {
         "welcome": RobotMode.WELCOME,
-        "patrol": RobotMode.PATROL,
+        "manual": RobotMode.MANUAL,
         "stop": RobotMode.STOPPED,
     }
     selected = allowed.get(request.mode.lower())
     if selected is None:
-        raise HTTPException(400, "mode must be welcome, patrol, or stop")
+        raise HTTPException(400, "mode must be welcome, manual, or stop")
     try:
         controller.set_mode(selected)
     except RuntimeError as exc:
         raise HTTPException(409, str(exc)) from exc
     return controller.snapshot()
+
+
+@app.websocket("/ws/manual")
+async def manual_control(websocket: WebSocket) -> None:
+    """Run one authenticated, ordered, hold-to-move control session."""
+    global _manual_socket
+
+    await websocket.accept()
+    owns_control = False
+    try:
+        auth = await asyncio.wait_for(websocket.receive_json(), timeout=5.0)
+        if not isinstance(auth, dict) or not _pin_matches(str(auth.get("pin", ""))):
+            await websocket.send_json({"type": "error", "message": "Incorrect control PIN"})
+            await websocket.close(code=1008)
+            return
+
+        async with _manual_socket_lock:
+            if _manual_socket is not None:
+                await websocket.send_json(
+                    {"type": "error", "message": "Another dashboard has manual control"}
+                )
+                await websocket.close(code=1008)
+                return
+            _manual_socket = websocket
+            owns_control = True
+
+        await websocket.send_json({"type": "ready"})
+        while True:
+            payload = await websocket.receive_json()
+            direction = str(payload.get("direction", "")) if isinstance(payload, dict) else ""
+            try:
+                controller.manual_drive(direction)
+            except (RuntimeError, ValueError) as exc:
+                await websocket.send_json({"type": "error", "message": str(exc)})
+            else:
+                await websocket.send_json({"type": "ack", "direction": direction})
+    except asyncio.TimeoutError:
+        await websocket.close(code=1008)
+    except WebSocketDisconnect:
+        pass
+    finally:
+        if owns_control:
+            async with _manual_socket_lock:
+                if _manual_socket is websocket:
+                    _manual_socket = None
+            controller.manual_connection_lost()
 
 
 @app.post("/api/reload-event")

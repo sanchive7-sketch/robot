@@ -7,7 +7,7 @@ from enum import Enum
 class RobotMode(str, Enum):
     IDLE = "idle"
     WELCOME = "welcome"
-    PATROL = "patrol"
+    MANUAL = "manual"
     STOPPED = "stopped"
     EMERGENCY = "emergency"
 
@@ -32,7 +32,6 @@ class Visitor:
     center_x: float
     center_y: float
     proximity_fraction: float
-    vip_id: str | None = None
-    vip_name: str | None = None
-    vip_greeting: str | None = None
-    identity_pending: bool = False
+    # The selected person's position is used for navigation, while this count
+    # lets the interaction greet a group without needing face identification.
+    person_count: int = 1

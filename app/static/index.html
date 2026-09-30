@@ -19,8 +19,19 @@
     .buttons { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
     button { appearance:none; border:0; border-radius:18px; min-height:84px; padding:15px; font:750 1.08rem system-ui; cursor:pointer; color:#061017; background:var(--cyan); touch-action:manipulation; }
     button:active { transform:scale(.98); }
-    .patrol { background:var(--amber); }
+    button:disabled { cursor:not-allowed; opacity:.42; transform:none; }
+    .manual { background:var(--amber); }
     .stop { grid-column:1/-1; color:white; background:var(--red); font-size:1.25rem; }
+    .manual-panel[hidden] { display:none; }
+    .direction-pad { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:14px; }
+    .direction { min-height:76px; padding:10px; touch-action:none; user-select:none; }
+    .direction.active { box-shadow:0 0 0 4px #fff5 inset; transform:scale(.98); }
+    .forward { grid-column:2; }
+    .left { grid-column:1; grid-row:2; }
+    .drive-stop { grid-column:2; grid-row:2; color:white; background:var(--red); }
+    .right { grid-column:3; grid-row:2; }
+    .backward { grid-column:2; grid-row:3; background:var(--amber); }
+    .small { color:var(--muted); font-size:.82rem; line-height:1.45; }
     .facts { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
     .fact { background:#0a1928; border-radius:14px; padding:12px; color:var(--muted); font-size:.82rem; }
     .fact strong { display:block; color:var(--text); font-size:1rem; margin-top:3px; overflow-wrap:anywhere; }
@@ -44,9 +55,20 @@
     <input id="pin" type="password" inputmode="numeric" placeholder="Control PIN" aria-label="Control PIN" maxlength="32">
   </section>
   <section class="buttons" aria-label="Robot modes">
-    <button onclick="setMode('welcome')">👋 Welcome</button>
-    <button class="patrol" onclick="setMode('patrol')">↻ Patrol</button>
-    <button class="stop" onclick="setMode('stop')">■ STOP</button>
+    <button onclick="setMode('welcome')">&#128075; Welcome</button>
+    <button class="manual" onclick="setMode('manual')">&#127918; Manual Control</button>
+    <button class="stop" onclick="setMode('stop')">&#9632; STOP</button>
+  </section>
+  <section class="card manual-panel" id="manualPanel" hidden>
+    <div class="eyebrow">Hold to move</div>
+    <div class="direction-pad" aria-label="Manual movement controls">
+      <button type="button" class="direction forward" data-direction="forward" disabled>&#9650;<br>Forward</button>
+      <button type="button" class="direction left" data-direction="left" disabled>&#9664;<br>Left</button>
+      <button type="button" class="direction drive-stop" data-direction="stop" disabled>&#9632;<br>Stop</button>
+      <button type="button" class="direction right" data-direction="right" disabled>Right<br>&#9654;</button>
+      <button type="button" class="direction backward" data-direction="backward" disabled>Backward<br>&#9660;</button>
+    </div>
+    <p class="small">Movement stops when you release the button or leave this page. Reverse slowly and only when you can see behind the robot.</p>
   </section>
   <section class="card">
     <div class="facts">
@@ -73,32 +95,124 @@
 </main>
 <script>
   const $ = id => document.getElementById(id);
+  let currentMode='idle';
+  let manualSocket=null;
+  let manualReady=false;
+  let manualTimer=null;
+  let activeDirection=null;
+
+  // Chassis calibration: the physical left and forward motor responses are
+  // exchanged, so translate only these two dashboard controls before sending.
+  const dashboardDirectionMap={forward:'left',left:'forward'};
+
+  function setManualButtons(enabled) {
+    document.querySelectorAll('[data-direction]').forEach(button=>button.disabled=!enabled);
+  }
+  function sendManual(direction) {
+    if (!manualReady || !manualSocket || manualSocket.readyState!==WebSocket.OPEN) return false;
+    manualSocket.send(JSON.stringify({direction:dashboardDirectionMap[direction]||direction}));
+    return true;
+  }
+  function stopManualMotion(sendStop=true) {
+    if (manualTimer) clearInterval(manualTimer);
+    manualTimer=null;
+    activeDirection=null;
+    document.querySelectorAll('[data-direction]').forEach(button=>button.classList.remove('active'));
+    if (sendStop) sendManual('stop');
+  }
+  function disconnectManual() {
+    stopManualMotion();
+    manualReady=false;
+    setManualButtons(false);
+    if (manualSocket) {
+      const socket=manualSocket;
+      manualSocket=null;
+      socket.close();
+    }
+  }
+  function connectManual(pin) {
+    if (manualSocket && manualSocket.readyState<=WebSocket.OPEN) return;
+    const protocol=location.protocol==='https:'?'wss':'ws';
+    const socket=new WebSocket(`${protocol}://${location.host}/ws/manual`);
+    manualSocket=socket;
+    manualReady=false;
+    setManualButtons(false);
+    socket.addEventListener('open',()=>socket.send(JSON.stringify({pin})));
+    socket.addEventListener('message',event=>{
+      let message;
+      try { message=JSON.parse(event.data); } catch (_) { return; }
+      if (message.type==='ready') {
+        manualReady=true;
+        setManualButtons(true);
+        $('activity').textContent='Manual control connected. Hold a direction to move.';
+        $('activity').className='';
+      } else if (message.type==='error') {
+        $('activity').textContent=message.message;
+        $('activity').className='error';
+      }
+    });
+    socket.addEventListener('close',()=>{
+      if (manualSocket===socket) manualSocket=null;
+      stopManualMotion(false);
+      manualReady=false;
+      setManualButtons(false);
+    });
+    socket.addEventListener('error',()=>{
+      $('activity').textContent='Manual control connection failed.';
+      $('activity').className='error';
+    });
+  }
   async function setMode(mode) {
     try {
       const pin=$('pin').value.trim();
       if (!pin) throw new Error('Enter the Control PIN before selecting a mode.');
       localStorage.setItem('robotPin',pin);
+      if (mode!=='manual') disconnectManual();
       const r = await fetch('/api/mode', {method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({mode,pin})});
       if (!r.ok) throw new Error((await r.json()).detail || 'Command failed');
       render(await r.json());
+      if (mode==='manual') connectManual(pin);
     } catch (e) { $('activity').textContent=e.message; $('activity').className='error'; }
   }
   function render(s) {
+    currentMode=s.mode;
     $('mode').textContent=s.mode.toUpperCase();
     $('activity').textContent=s.activity; $('activity').className='';
     $('esp').textContent=s.simulation?'Simulation — no ESP32':(s.telemetry.connected?'Connected':'Offline');
     $('camera').textContent=s.camera_ok?`Ready · ${s.vision_backend}`:'Offline';
     $('llm').textContent=s.llm.local_ready?`Local · ${s.llm.local_model}`:(s.llm.last_provider==='sarvam'?'Sarvam fallback':'Starting…');
-    $('visitor').textContent=s.vip_name || (s.visitor_detected?'Detected':'None');
+    $('visitor').textContent=s.visitor_detected?(s.visitor_count>1?`${s.visitor_count} detected`:'Detected'):'None';
     const c=Math.min(s.telemetry.left_distance_cm,s.telemetry.right_distance_cm);
     $('clearance').textContent=c>=900?'—':`${Math.round(c)} cm`;
     $('visionWarning').textContent=[s.vision_error,s.llm.last_error].filter(Boolean).join(' · ');
-    const colors={welcome:'#42d8e8',patrol:'#ffbd4a',stopped:'#ff5c6c',emergency:'#ff5c6c',idle:'#91a8be'};
+    $('manualPanel').hidden=s.mode!=='manual';
+    if (s.mode!=='manual' && manualSocket) disconnectManual();
+    const colors={welcome:'#42d8e8',manual:'#ffbd4a',stopped:'#ff5c6c',emergency:'#ff5c6c',idle:'#91a8be'};
     $('dot').style.background=colors[s.mode]||'#91a8be';
   }
   async function poll(){ try{ const r=await fetch('/api/status'); if(r.ok) render(await r.json()); }catch(e){} }
   setInterval(poll,750); poll();
   $('pin').value=localStorage.getItem('robotPin')||'';
+  document.querySelectorAll('[data-direction]').forEach(button=>{
+    button.addEventListener('pointerdown',event=>{
+      event.preventDefault();
+      if (!manualReady || currentMode!=='manual') return;
+      stopManualMotion();
+      activeDirection=button.dataset.direction;
+      button.classList.add('active');
+      button.setPointerCapture?.(event.pointerId);
+      sendManual(activeDirection);
+      if (activeDirection!=='stop') {
+        manualTimer=setInterval(()=>sendManual(activeDirection),200);
+      }
+    });
+    for (const eventName of ['pointerup','pointercancel','lostpointercapture']) {
+      button.addEventListener(eventName,()=>stopManualMotion());
+    }
+  });
+  window.addEventListener('blur',()=>stopManualMotion());
+  window.addEventListener('pagehide',()=>stopManualMotion());
+  document.addEventListener('visibilitychange',()=>{if(document.hidden)stopManualMotion();});
   $('ask').addEventListener('submit',async e=>{
     e.preventDefault(); const q=$('question').value.trim(); if(!q)return;
     $('answer').textContent='Thinking…';

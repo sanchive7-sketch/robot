@@ -1,11 +1,11 @@
 event:
   name: "AI Museum 2026"
   college: "Knowledge Institute of Technology"
-  venue: "MBA Seminar Hall"
-  date: "8th august 2026"
+  venue: "E Block Seminar Hall"
+  date: "28th October 2026"
   opening_hours: "9:00 AM to 5:00 PM"
   help_desk: "At the main entrance, beside the registration counter"
-  emergency_contact: "Event coordinator: Sri sanchive kumar R +91 8838003882"
+  emergency_contact: "Event coordinator: Sri sanchive kumar R"
 
 catalog_status:
   zone_assignment: "Pending for most projects"

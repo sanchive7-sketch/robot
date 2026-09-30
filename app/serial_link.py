@@ -31,6 +31,7 @@ class SerialLink:
         self._serial: serial.Serial | None = None
         self._stop = threading.Event()
         self._tx: queue.Queue[dict] = queue.Queue(maxsize=50)
+        self._tx_lock = threading.Lock()
         self._thread: threading.Thread | None = None
 
     def start(self) -> None:
@@ -47,6 +48,10 @@ class SerialLink:
             self._serial.close()
 
     def send(self, message: dict) -> None:
+        with self._tx_lock:
+            self._send_unlocked(message)
+
+    def _send_unlocked(self, message: dict) -> None:
         try:
             self._tx.put_nowait(message)
         except queue.Full:
@@ -55,14 +60,29 @@ class SerialLink:
     def set_mode(self, mode: str) -> None:
         self.send({"cmd": "SET_MODE", "mode": mode.upper()})
 
+    def set_welcome_zone(self, forward_m: float, side_m: float) -> None:
+        """Configure the ESP32's odometry-enforced welcome area.
+
+        The next ``WELCOME`` mode command records its centre pose. Keeping this
+        as a separate command preserves compatibility with the simple mode API.
+        """
+        self.send(
+            {
+                "cmd": "SET_WELCOME_ZONE",
+                "forward_limit_m": round(forward_m, 3),
+                "side_limit_m": round(side_m, 3),
+            }
+        )
+
     def stop(self) -> None:
         # Place STOP at the head by clearing stale motion commands.
-        while True:
-            try:
-                self._tx.get_nowait()
-            except queue.Empty:
-                break
-        self.send({"cmd": "STOP"})
+        with self._tx_lock:
+            while True:
+                try:
+                    self._tx.get_nowait()
+                except queue.Empty:
+                    break
+            self._send_unlocked({"cmd": "STOP"})
 
     def drive(self, linear_mps: float, angular_rps: float) -> None:
         self.send(
@@ -72,6 +92,28 @@ class SerialLink:
                 "angular_rps": round(angular_rps, 3),
             }
         )
+
+    def manual_drive(self, linear_mps: float, angular_rps: float) -> None:
+        """Send a leased manual command, separate from Welcome navigation."""
+        command = {
+            "cmd": "MANUAL_DRIVE",
+            "linear_mps": round(linear_mps, 3),
+            "angular_rps": round(angular_rps, 3),
+        }
+        # Only the newest held direction matters. Preserve mode, heartbeat and
+        # wave commands, but never let stale manual motion accumulate.
+        with self._tx_lock:
+            preserved = []
+            while True:
+                try:
+                    pending = self._tx.get_nowait()
+                except queue.Empty:
+                    break
+                if pending.get("cmd") != "MANUAL_DRIVE":
+                    preserved.append(pending)
+            for pending in preserved:
+                self._send_unlocked(pending)
+            self._send_unlocked(command)
 
     def wave(self, seconds: float = 2.5) -> None:
         self.send({"cmd": "WAVE", "seconds": seconds})
@@ -102,11 +144,12 @@ class SerialLink:
     def _flush_one(self) -> None:
         if not self._serial:
             return
-        try:
-            message = self._tx.get_nowait()
-        except queue.Empty:
-            return
-        self._serial.write((json.dumps(message) + "\n").encode("utf-8"))
+        with self._tx_lock:
+            try:
+                message = self._tx.get_nowait()
+            except queue.Empty:
+                return
+            self._serial.write((json.dumps(message) + "\n").encode("utf-8"))
 
     def _handle_line(self, line: str) -> None:
         try:
