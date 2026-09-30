@@ -51,3 +51,31 @@ def test_local_only_does_not_silently_use_cloud(monkeypatch) -> None:
     else:
         raise AssertionError("local_only must not call Sarvam")
     assert llm.sarvam.calls == 0
+
+
+def test_warmup_uses_the_configured_context_budget(monkeypatch) -> None:
+    requests = []
+
+    class FakeResponse:
+        def raise_for_status(self) -> None:
+            return None
+
+    class FakeClient:
+        def __init__(self, **_kwargs) -> None:
+            pass
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *_args) -> None:
+            return None
+
+        def post(self, _url, *, json):
+            requests.append(json)
+            return FakeResponse()
+
+    monkeypatch.setattr("app.llm.httpx.Client", FakeClient)
+    llm = make_llm()
+    llm._warmup()
+
+    assert requests[0]["options"] == {"num_ctx": 8192}

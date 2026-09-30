@@ -112,6 +112,10 @@ class HybridLlm:
                         "prompt": "",
                         "stream": False,
                         "keep_alive": self.keep_alive,
+                        # Use the same context budget as answers. Without this,
+                        # Ollama loads the model using its much larger default
+                        # context and needlessly spills work from the GPU to CPU.
+                        "options": {"num_ctx": self.context_tokens},
                     },
                 )
                 response.raise_for_status()
