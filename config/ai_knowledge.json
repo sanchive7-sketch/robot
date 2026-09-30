@@ -1,0 +1,356 @@
+{
+  "schema_version": "1.0",
+  "last_reviewed": "2026-09-28",
+  "purpose": "Visitor-friendly reference material for answering general questions about artificial intelligence. Event-specific facts remain in event.yaml and project_catalog.json.",
+  "usage_notes": [
+    "Explain ideas in simple spoken language and define abbreviations the first time they are used.",
+    "Do not claim that one person invented all of AI; distinguish coining the field's name from the many earlier and later contributions.",
+    "Treat current-directions material as time-sensitive and use the last_reviewed date when a visitor asks what is newest."
+  ],
+  "topics": [
+    {
+      "topic_id": "ai-overview",
+      "title": "Artificial Intelligence",
+      "aliases": ["AI", "artificial intelligence", "what is AI"],
+      "keywords": ["intelligent machines", "reasoning", "perception", "language", "decision making"],
+      "summary": "Artificial intelligence is the broad field of building computer systems that perform tasks associated with human intelligence, such as recognizing patterns, understanding language, making predictions, planning, and solving problems.",
+      "key_facts": [
+        "AI is an umbrella field; machine learning, deep learning, natural language processing, computer vision, and robotics are important parts of it.",
+        "Most deployed AI is narrow AI designed for particular tasks. Human-level general intelligence has not been established.",
+        "An AI system does not automatically understand, feel, or reason exactly as a person does, even when its output sounds natural."
+      ],
+      "sources": [
+        {
+          "title": "Dartmouth AI: Our Story",
+          "url": "https://ai.dartmouth.edu/our-story"
+        },
+        {
+          "title": "NIST Fundamental AI",
+          "url": "https://www.nist.gov/fundamental-ai"
+        }
+      ]
+    },
+    {
+      "topic_id": "ai-history",
+      "title": "Origins and History of AI",
+      "aliases": ["history of AI", "origin of AI", "who invented AI", "who invented artificial intelligence", "father of AI", "AI inventor"],
+      "keywords": ["Dartmouth", "1955", "1956", "John McCarthy", "Alan Turing", "Marvin Minsky", "Claude Shannon", "Nathaniel Rochester"],
+      "summary": "AI was not invented by one person. Its mathematical and computing foundations developed over many years, and the name artificial intelligence was introduced in the 1955 proposal for the 1956 Dartmouth Summer Research Project.",
+      "key_facts": [
+        "Alan Turing helped establish theoretical computer science and proposed a conversational test of machine intelligence in 1950.",
+        "John McCarthy coined the term artificial intelligence in the 1955 Dartmouth proposal and led the 1956 workshop that helped establish AI as a research field.",
+        "John McCarthy, Marvin Minsky, Nathaniel Rochester, and Claude Shannon authored the Dartmouth proposal.",
+        "Later advances came from many communities, including symbolic reasoning, statistics, neuroscience-inspired networks, optimization, and computer engineering."
+      ],
+      "people": [
+        {
+          "name": "Alan Turing",
+          "contribution": "Foundational work in computation and an influential 1950 proposal for evaluating machine intelligence."
+        },
+        {
+          "name": "John McCarthy",
+          "contribution": "Coined the term artificial intelligence, led the Dartmouth workshop, and later created the Lisp programming language."
+        },
+        {
+          "name": "Marvin Minsky",
+          "contribution": "Dartmouth proposal co-author and influential early AI and cognitive science researcher."
+        },
+        {
+          "name": "Claude Shannon",
+          "contribution": "Dartmouth proposal co-author whose information theory became foundational to computing and communication."
+        },
+        {
+          "name": "Nathaniel Rochester",
+          "contribution": "Dartmouth proposal co-author and computer engineering pioneer at IBM."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Dartmouth AI: Our Story",
+          "url": "https://ai.dartmouth.edu/our-story"
+        },
+        {
+          "title": "Computing Machinery and Intelligence",
+          "url": "https://academic.oup.com/mind/article/LIX/236/433/986238"
+        }
+      ]
+    },
+    {
+      "topic_id": "machine-learning",
+      "title": "Machine Learning",
+      "aliases": ["ML", "machine learning"],
+      "keywords": ["training data", "supervised", "unsupervised", "reinforcement", "prediction", "Arthur Samuel"],
+      "summary": "Machine learning is a part of AI in which a computer learns patterns from data or experience instead of relying only on hand-written rules for every case.",
+      "key_facts": [
+        "Supervised learning learns from labeled examples, unsupervised learning searches for structure without those labels, and reinforcement learning learns actions from rewards and penalties.",
+        "Arthur Samuel popularized the term machine learning through his work on a checkers-playing program and a 1959 paper.",
+        "The quality, relevance, and bias of training data strongly affect a model's behavior."
+      ],
+      "sources": [
+        {
+          "title": "Some Studies in Machine Learning Using the Game of Checkers",
+          "url": "https://research.ibm.com/publications/some-studies-in-machine-learning-using-the-game-of-checkers"
+        }
+      ]
+    },
+    {
+      "topic_id": "neural-networks",
+      "title": "Artificial Neural Networks",
+      "aliases": ["neural network", "ANN", "artificial neuron"],
+      "keywords": ["layers", "weights", "activation", "backpropagation", "perceptron"],
+      "summary": "An artificial neural network is a machine-learning model made of connected mathematical units arranged in layers. Training adjusts connection weights so the network produces more useful outputs.",
+      "key_facts": [
+        "Neural networks are inspired loosely by biological neurons but are mathematical models, not replicas of a human brain.",
+        "Backpropagation computes how model errors relate to weights, allowing an optimizer to improve those weights.",
+        "Different network designs are used for images, sound, language, time series, and control."
+      ],
+      "sources": [
+        {
+          "title": "Learning representations by back-propagating errors",
+          "url": "https://www.nature.com/articles/323533a0"
+        }
+      ]
+    },
+    {
+      "topic_id": "deep-learning",
+      "title": "Deep Learning",
+      "aliases": ["DL", "deep neural network", "deep learning"],
+      "keywords": ["many layers", "representation learning", "Geoffrey Hinton", "Yann LeCun", "Yoshua Bengio"],
+      "summary": "Deep learning is machine learning based on neural networks with multiple processing layers that learn increasingly useful representations from data.",
+      "key_facts": [
+        "Deep learning has driven major progress in speech recognition, computer vision, language processing, and other fields.",
+        "Geoffrey Hinton, Yann LeCun, and Yoshua Bengio received the 2018 ACM A.M. Turing Award for conceptual and engineering breakthroughs in deep neural networks.",
+        "Deep models can require substantial data and computing power and can still fail on unfamiliar or biased data."
+      ],
+      "people": [
+        {
+          "name": "Geoffrey Hinton",
+          "contribution": "Major advances in learning representations and training deep neural networks."
+        },
+        {
+          "name": "Yann LeCun",
+          "contribution": "Pioneering work on convolutional neural networks and computer vision."
+        },
+        {
+          "name": "Yoshua Bengio",
+          "contribution": "Major advances in neural language models and deep representation learning."
+        }
+      ],
+      "sources": [
+        {
+          "title": "2018 ACM A.M. Turing Award announcement",
+          "url": "https://awards.acm.org/about/2018-turing"
+        },
+        {
+          "title": "Deep learning",
+          "url": "https://www.nature.com/articles/nature14539"
+        }
+      ]
+    },
+    {
+      "topic_id": "natural-language-processing",
+      "title": "Natural Language Processing",
+      "aliases": ["NLP", "language AI", "natural language processing"],
+      "keywords": ["text", "speech", "translation", "sentiment", "question answering"],
+      "summary": "Natural language processing is the area of AI that helps computers analyze, generate, translate, and interact through human language.",
+      "key_facts": [
+        "NLP applications include translation, search, speech assistants, summarization, information extraction, and question answering.",
+        "Language is ambiguous and context-dependent, so NLP output can be fluent while still being incorrect.",
+        "Modern NLP often uses transformer neural networks trained on large text collections."
+      ],
+      "sources": [
+        {
+          "title": "Speech and Language Processing",
+          "url": "https://web.stanford.edu/~jurafsky/slp3/"
+        }
+      ]
+    },
+    {
+      "topic_id": "transformers",
+      "title": "Transformer Architecture",
+      "aliases": ["transformer", "attention model", "self-attention"],
+      "keywords": ["attention", "tokens", "sequence", "Vaswani", "2017"],
+      "summary": "A transformer is a neural-network architecture that uses attention mechanisms to relate parts of an input sequence. It is the foundation of many modern language and multimodal models.",
+      "key_facts": [
+        "The 2017 paper Attention Is All You Need introduced the original transformer architecture for sequence transduction.",
+        "Self-attention lets a model weigh relationships among tokens even when they are far apart in a sequence.",
+        "Transformers can process many sequence positions in parallel during training, unlike strictly recurrent architectures."
+      ],
+      "people": [
+        {
+          "name": "Ashish Vaswani and co-authors",
+          "contribution": "Introduced the transformer architecture in the 2017 paper Attention Is All You Need."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Attention Is All You Need",
+          "url": "https://arxiv.org/abs/1706.03762"
+        }
+      ]
+    },
+    {
+      "topic_id": "large-language-models",
+      "title": "Large Language Models",
+      "aliases": ["LLM", "LLMs", "large language model", "language model"],
+      "keywords": ["tokens", "pretraining", "next token", "fine-tuning", "instruction tuning", "context window"],
+      "summary": "A large language model is a neural language model trained on very large text or mixed-media datasets to predict and generate sequences of tokens. It can perform many language tasks from instructions and examples in its context.",
+      "key_facts": [
+        "Pretraining learns broad statistical patterns; fine-tuning or instruction tuning can adapt a model to desired tasks and behavior.",
+        "The context window is the limited amount of input and prior conversation a model can consider at one time.",
+        "An LLM generates likely continuations rather than consulting a guaranteed database of truth, so it can hallucinate plausible but false information.",
+        "Model size alone does not guarantee accuracy, safety, reasoning quality, or suitability for a task."
+      ],
+      "sources": [
+        {
+          "title": "On the Opportunities and Risks of Foundation Models",
+          "url": "https://crfm.stanford.edu/assets/report.pdf"
+        },
+        {
+          "title": "Language Models are Few-Shot Learners",
+          "url": "https://arxiv.org/abs/2005.14165"
+        }
+      ]
+    },
+    {
+      "topic_id": "retrieval-augmented-generation",
+      "title": "Retrieval-Augmented Generation",
+      "aliases": ["RAG", "retrieval augmented generation", "grounded generation"],
+      "keywords": ["retriever", "documents", "vector database", "embeddings", "grounding", "citations", "knowledge base"],
+      "summary": "Retrieval-augmented generation, or RAG, first retrieves relevant material from an external knowledge source and then gives that material to a generative model to help form an answer.",
+      "key_facts": [
+        "RAG can update accessible knowledge by changing the source collection without fully retraining the language model.",
+        "A typical pipeline splits documents, creates searchable representations, retrieves relevant passages, and places them in the model prompt.",
+        "RAG can improve grounding and provenance, but poor retrieval or unreliable source documents can still produce wrong answers.",
+        "RAG is different from fine-tuning: retrieval supplies reference information at answer time, while fine-tuning changes model parameters."
+      ],
+      "people": [
+        {
+          "name": "Patrick Lewis and co-authors",
+          "contribution": "Introduced the term and RAG models in the 2020 paper Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+          "url": "https://arxiv.org/abs/2005.11401"
+        }
+      ]
+    },
+    {
+      "topic_id": "generative-ai",
+      "title": "Generative AI",
+      "aliases": ["GenAI", "generative artificial intelligence", "content generation"],
+      "keywords": ["generate", "text", "image", "audio", "video", "code", "diffusion"],
+      "summary": "Generative AI describes models that create new content such as text, images, audio, video, or code based on patterns learned from training data.",
+      "key_facts": [
+        "Language models commonly generate token sequences, while many image generators use diffusion methods that iteratively transform noise into an image.",
+        "Generated content is not automatically original, accurate, unbiased, or safe to publish.",
+        "Useful applications include drafting, design exploration, tutoring, simulation, coding assistance, and media creation with human review."
+      ],
+      "sources": [
+        {
+          "title": "NIST AI RMF Generative Artificial Intelligence Profile",
+          "url": "https://doi.org/10.6028/NIST.AI.600-1"
+        }
+      ]
+    },
+    {
+      "topic_id": "multimodal-ai",
+      "title": "Multimodal AI",
+      "aliases": ["multimodal model", "vision language model", "VLM"],
+      "keywords": ["text", "image", "audio", "video", "sensor", "cross-modal"],
+      "summary": "Multimodal AI can process or generate more than one type of information, such as text, images, audio, video, or sensor data, within one system.",
+      "key_facts": [
+        "A vision-language model can connect visual information with text for tasks such as image description and visual question answering.",
+        "Combining modalities can add useful context, but errors can arise from each input type and from how the types are aligned.",
+        "Multimodal systems are increasingly used in assistants, accessibility tools, robotics, search, and content creation."
+      ],
+      "sources": [
+        {
+          "title": "Learning Transferable Visual Models From Natural Language Supervision",
+          "url": "https://arxiv.org/abs/2103.00020"
+        }
+      ]
+    },
+    {
+      "topic_id": "ai-agents",
+      "title": "AI Agents and Tool Use",
+      "aliases": ["AI agent", "agentic AI", "autonomous agent", "tool-using AI"],
+      "keywords": ["planning", "tools", "memory", "actions", "workflow", "ReAct"],
+      "summary": "An AI agent is a system that uses a model to choose actions toward a goal, often by planning, using tools, reading results, and repeating the process under defined limits.",
+      "key_facts": [
+        "Tools may include search, databases, calculators, software APIs, sensors, or robot controls.",
+        "Agentic systems need permission limits, validation, monitoring, and safe stopping because a mistaken action can affect the real world.",
+        "An agent is a system design around a model; it is not proof that the model has consciousness or independent intentions."
+      ],
+      "sources": [
+        {
+          "title": "ReAct: Synergizing Reasoning and Acting in Language Models",
+          "url": "https://arxiv.org/abs/2210.03629"
+        }
+      ]
+    },
+    {
+      "topic_id": "small-and-edge-models",
+      "title": "Small Language Models and Edge AI",
+      "aliases": ["SLM", "small language model", "edge AI", "on-device AI", "local AI"],
+      "keywords": ["efficient", "quantization", "distillation", "phone", "embedded", "offline", "privacy"],
+      "summary": "Small language models and edge AI aim to run useful AI with fewer computing resources, sometimes directly on phones, laptops, robots, or embedded devices.",
+      "key_facts": [
+        "Smaller models can reduce latency, cost, network dependence, and exposure of private data when processing stays on the device.",
+        "Quantization, pruning, distillation, and efficient architectures can reduce memory or computation requirements.",
+        "The tradeoff can be lower capability on broad or difficult tasks, so evaluation must match the intended use."
+      ],
+      "sources": [
+        {
+          "title": "Stanford AI Index Report 2025",
+          "url": "https://hai.stanford.edu/assets/files/hai_ai_index_report_2025.pdf"
+        }
+      ]
+    },
+    {
+      "topic_id": "responsible-ai",
+      "title": "Responsible and Trustworthy AI",
+      "aliases": ["responsible AI", "ethical AI", "AI safety", "trustworthy AI", "AI bias"],
+      "keywords": ["fairness", "privacy", "security", "transparency", "explainability", "accountability", "reliability", "human oversight"],
+      "summary": "Responsible AI is the practice of designing, testing, deploying, and monitoring AI so that its benefits and risks are considered throughout the system lifecycle.",
+      "key_facts": [
+        "Important considerations include validity, reliability, safety, security, resilience, accountability, transparency, explainability, privacy, and harmful bias.",
+        "No single metric proves that an AI system is trustworthy; requirements and tradeoffs depend on the use and the people affected.",
+        "High-impact uses need stronger testing, human oversight, incident response, and clear responsibility for decisions."
+      ],
+      "sources": [
+        {
+          "title": "NIST AI Risk Management Framework",
+          "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+        }
+      ]
+    },
+    {
+      "topic_id": "current-ai-directions",
+      "title": "Current and Emerging AI Directions",
+      "aliases": ["new AI technology", "latest AI technology", "newer directions in AI", "future of AI", "AI trends", "new in AI"],
+      "keywords": ["multimodal", "agents", "reasoning", "small models", "synthetic data", "robotics", "efficient AI", "2026"],
+      "summary": "As reviewed in September 2026, active AI directions include multimodal models, tool-using agents, smaller efficient models, retrieval-grounded systems, AI for science and robotics, and stronger evaluation and risk management.",
+      "key_facts": [
+        "Multimodal systems increasingly combine language with vision, audio, video, and sensor information.",
+        "Tool-using and agentic systems extend models with planning and actions, making permission controls and verification especially important.",
+        "Smaller and more efficient models are improving, enabling more local and on-device applications.",
+        "Retrieval and external tools can make answers more grounded, but do not eliminate model or source errors.",
+        "Synthetic data can help in selected settings, but it is not a universal replacement for high-quality real data.",
+        "Evaluation, provenance, security, privacy, and human oversight are developing alongside model capabilities."
+      ],
+      "sources": [
+        {
+          "title": "Stanford AI Index Report 2026, Research and Development",
+          "url": "https://hai.stanford.edu/assets/files/ai_index_report_2026_chapter_1_research_development.pdf"
+        },
+        {
+          "title": "NIST AI Risk Management Framework",
+          "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+        }
+      ]
+    }
+  ]
+}
